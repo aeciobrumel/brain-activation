@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color: #1f2a2f;
+    background:
+      radial-gradient(circle at top, rgba(202, 167, 100, 0.12), transparent 30%),
+      linear-gradient(180deg, #fffdf9 0%, #f4efe6 100%);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    @apply box-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply m-0 min-h-screen bg-transparent font-sans text-ink;
+  }
+
+  a {
+    @apply text-inherit no-underline;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  #root {
+    @apply min-h-screen;
+  }
+}
