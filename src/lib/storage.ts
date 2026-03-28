@@ -1,4 +1,5 @@
 import { getISODate } from './helpers'
+import type { ExerciseScore } from '../features/exercises/types'
 
 export interface ProgressState {
   streakDays: number
@@ -156,4 +157,32 @@ export function saveMemory(memory: SavedMemory) {
   const next = [memory, ...current].slice(0, 12)
   localStorage.setItem(SAVED_MEMORIES_KEY, JSON.stringify(next))
   return next
+}
+
+// ─── Exercise Scores ──────────────────────────────────────────────────────────
+
+const SCORES_KEY = 'brain-activation-scores'
+
+export function saveExerciseScore(score: ExerciseScore): void {
+  const current = getExerciseScores()
+  const next = [score, ...current].slice(0, 200) // keep last 200 entries
+  localStorage.setItem(SCORES_KEY, JSON.stringify(next))
+}
+
+export function getExerciseScores(exerciseId?: string): ExerciseScore[] {
+  if (typeof window === 'undefined') return []
+  const raw = localStorage.getItem(SCORES_KEY)
+  if (!raw) return []
+  try {
+    const scores = JSON.parse(raw) as ExerciseScore[]
+    return exerciseId ? scores.filter((s) => s.exerciseId === exerciseId) : scores
+  } catch {
+    return []
+  }
+}
+
+export function getBestScore(exerciseId: string): ExerciseScore | null {
+  const scores = getExerciseScores(exerciseId)
+  if (!scores.length) return null
+  return scores.reduce((best, s) => (s.neuralScore > best.neuralScore ? s : best))
 }

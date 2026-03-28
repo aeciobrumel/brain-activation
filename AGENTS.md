@@ -1,438 +1,428 @@
-## Cognitive Content and Exercise Catalog
+# 🧠 Brain Activation
 
-This product is not only a generic brain-training app. It must include a structured cognitive training system based on practical categories of mental activation.
+Aplicativo de ativação cognitiva focado em melhorar:
 
-The app should organize exercises into meaningful groups so the user can quickly choose what they want to improve.
+- foco  
+- memória  
+- raciocínio lógico  
+- integração hemisférica  
+- criatividade  
+- velocidade mental  
+- clareza sob pressão  
 
-The experience should help with:
-
-- focus
-- memory
-- logical reasoning
-- hemispheric integration
-- creativity
-- mental speed
-- mental clarity under pressure
-
----
-
-## Main Cognitive Categories
-
-The product must include the following exercise categories:
-
-### 1. Hemispheric Integration
-
-These exercises stimulate communication between both brain hemispheres through cross-body movement, bilateral coordination, and visual-motor integration.
-
-Include exercises such as:
-
-- Cross Crawl
-- Mirror Drawing
-- Cross Shoulder Tapping
-- Infinity Tracing in the Air
-- Alternating Claps
-
-Expected benefits:
-- better coordination
-- bilateral activation
-- improved focus before study or work
-- visual-motor integration
-- reaction improvement
-
-These exercises should feel practical, guided, and fast.
+Este não é apenas um app de exercícios mentais.  
+É um sistema estruturado de ativação neural para uso rápido antes de estudo, trabalho ou tarefas cognitivas.
 
 ---
 
-### 2. Focus and Attention Activation
+# 🎯 Objetivo
 
-These exercises are designed to quickly improve concentration, alertness, and cognitive readiness.
-
-Include exercises such as:
-
-- Coherent Breathing
-- Horizontal Eye Tracking
-- Peripheral Attention Training
-- Reverse Counting
-- Tactical Breathing (Box Breathing)
-
-Expected benefits:
-- better attention
-- calmer mind
-- reduced mental noise
-- improved readiness for cognitive work
-- improved visual attention
-
-These exercises should be suitable for a “Focus Now” or “Activate Brain” mode.
+Criar um ambiente prático e eficiente para ativação mental rápida, com sessões curtas, guiadas e mensuráveis.
 
 ---
 
-### 3. Memory Training
+# 🧩 Categorias Cognitivas
 
-These exercises should strengthen learning and recall through spatial memory, association, and visual imagery.
+## 1. Integração Hemisférica
 
-Include exercises such as:
+Exercícios que estimulam comunicação entre os dois hemisférios.
 
-- Memory Palace
-- Chunking
-- Visual Sequence Memory
-- Word Recall
-- Visual Association
-- Fast Association of Words
+**Exemplos:**
+- Cross Crawl  
+- Mirror Drawing  
+- Infinity Tracing  
+- Alternating Claps  
 
-Expected benefits:
-- stronger memorization
-- improved recall
-- better learning efficiency
-- enhanced visual association
-
-Memory content should be practical and not overly academic.
+**Benefícios:**
+- coordenação  
+- ativação bilateral  
+- melhora do foco inicial  
 
 ---
 
-### 4. Visual Memory Generator with AI
+## 2. Foco e Atenção
 
-The app must include a special feature called:
+Exercícios para aumentar concentração e reduzir ruído mental.
 
-**Visual Memory Generator**
+**Exemplos:**
+- Box Breathing  
+- Eye Tracking  
+- Peripheral Attention  
+- Reverse Counting  
 
-This feature is based on exaggerated visual association used in memory training.
+**Benefícios:**
+- atenção sustentada  
+- clareza mental  
+- prontidão cognitiva  
 
-Flow:
+---
 
-- user types a word, phrase, or concept
-- the system transforms it into a bizarre or exaggerated visual prompt
-- the app shows the generated prompt
-- optionally generate an image using an image generation API
-- allow user to save the result
+## 3. Memória
 
-Example:
+Treinamento de retenção e recall.
+
+**Exemplos:**
+- Memory Palace  
+- Chunking  
+- Word Recall  
+- Visual Association  
+
+**Benefícios:**
+- aprendizado mais rápido  
+- melhor retenção  
+
+---
+
+## 4. Lógica e Raciocínio
+
+Desenvolvimento de pensamento estruturado.
+
+**Exemplos:**
+- padrões numéricos  
+- sequência lógica  
+- decomposição de problemas  
+
+**Benefícios:**
+- pensamento analítico  
+- clareza estrutural  
+
+---
+
+## 5. Criatividade
+
+Estimulação de pensamento divergente.
+
+**Exemplos:**
+- associação de palavras  
+- uso alternativo de objetos  
+- escrita com mão não dominante  
+
+**Benefícios:**
+- flexibilidade mental  
+- redução de bloqueio criativo  
+
+---
+
+## 6. Clareza sob Pressão
+
+Treinamento para manter foco em situações intensas.
+
+**Exemplos:**
+- respiração tática  
+- reação rápida  
+- percepção periférica  
+
+**Benefícios:**
+- decisões mais rápidas  
+- controle emocional  
+
+---
+
+# ⚙️ Diferencial do Produto
+
+- exercícios interativos (não apenas leitura)  
+- sessões curtas (5–20 minutos)  
+- modo fullscreen imersivo  
+- métricas de desempenho  
+- foco em aplicação prática (estudo, trabalho, programação)  
+
+---
+
+# 🚫 Sem uso de IA externa
+
+Este projeto **não utiliza APIs pagas nem tokens de IA**.
+
+O sistema de geração de memória visual funciona com:
+
+- lógica local  
+- templates pré-definidos  
+- combinações aleatórias de elementos  
+
+# 🧠 Brain Activation
+
+Aplicativo de ativação cognitiva focado em melhorar:
+
+- foco  
+- memória  
+- raciocínio lógico  
+- integração hemisférica  
+- criatividade  
+- velocidade mental  
+- clareza sob pressão  
+
+Este não é apenas um app de exercícios mentais.  
+É um sistema estruturado de ativação neural para uso rápido antes de estudo, trabalho ou tarefas cognitivas.
+
+---
+
+# 🎯 Objetivo
+
+Criar um ambiente prático e eficiente para ativação mental rápida, com sessões curtas, guiadas e mensuráveis.
+
+---
+
+# 🧩 Estrutura Cognitiva do Produto
+
+O aplicativo é organizado em categorias práticas de ativação mental.
+
+## 1. Integração Hemisférica
+
+Exercícios que estimulam comunicação entre os dois hemisférios através de coordenação bilateral.
+
+**Exemplos:**
+- Cross Crawl  
+- Mirror Drawing  
+- Infinity Tracing  
+- Alternating Claps  
+
+**Benefícios:**
+- coordenação  
+- ativação bilateral  
+- melhora do foco inicial  
+- integração visual-motora  
+
+---
+
+## 2. Foco e Atenção
+
+Exercícios para aumentar concentração e reduzir ruído mental.
+
+**Exemplos:**
+- Box Breathing  
+- Eye Tracking  
+- Peripheral Attention  
+- Reverse Counting  
+
+**Benefícios:**
+- atenção sustentada  
+- clareza mental  
+- prontidão cognitiva  
+
+---
+
+## 3. Memória
+
+Treinamento de retenção e recall.
+
+**Exemplos:**
+- Memory Palace  
+- Chunking  
+- Word Recall  
+- Visual Association  
+
+**Benefícios:**
+- aprendizado mais rápido  
+- melhor retenção  
+- associação visual  
+
+---
+
+## 4. Lógica e Raciocínio
+
+Desenvolvimento de pensamento estruturado e abstrato.
+
+**Exemplos:**
+- padrões numéricos  
+- sequência lógica  
+- decomposição de problemas  
+
+**Benefícios:**
+- pensamento analítico  
+- clareza estrutural  
+- resolução de problemas  
+
+---
+
+## 5. Criatividade e Inteligência Fluida
+
+Estimulação de pensamento divergente e flexível.
+
+**Exemplos:**
+- associação de palavras  
+- usos alternativos de objetos  
+- escrita com mão não dominante  
+- transformação de ideias  
+
+**Benefícios:**
+- criatividade  
+- flexibilidade mental  
+- redução de bloqueio criativo  
+
+---
+
+## 6. Clareza sob Pressão
+
+Treinamento para manter desempenho cognitivo em situações intensas.
+
+**Exemplos:**
+- respiração tática  
+- reação rápida  
+- percepção periférica  
+- tomada de decisão rápida  
+
+**Benefícios:**
+- decisões mais rápidas  
+- controle emocional  
+- foco sob pressão  
+
+---
+
+# ⚡ Rotinas Rápidas
+
+## 5 minutos
+- Cross Crawl  
+- Infinity Tracing  
+- Mirror Drawing  
+
+## 10 minutos
+- Respiração  
+- Eye Tracking  
+- Escrita não dominante  
+- Desenho livre  
+
+## 15 minutos
+- Respiração tática  
+- Memória visual  
+- Rotação mental  
+- Associação  
+
+---
+
+# 🧠 Sistema de Exercícios
+
+Cada exercício contém:
+
+- título  
+- categoria  
+- duração  
+- instruções simples  
+- benefícios  
+- nível (opcional)  
+
+---
+
+# 🎮 Experiência Fullscreen
+
+Todos os exercícios rodam em modo imersivo:
+
+- sem header  
+- sem navegação  
+- foco total no exercício  
+
+**Layout padrão:**
+
+[Título]
+
+[Área principal do exercício]
+
+[Timer + botão próximo]
+
+---
+
+# ⚙️ Diferenciais do Produto
+
+- exercícios interativos (não apenas leitura)  
+- sessões curtas (5–20 minutos)  
+- modo fullscreen imersivo  
+- métricas de desempenho  
+- uso prático (antes de estudar, trabalhar ou programar)  
+
+---
+
+# 🚫 Sem uso de IA externa
+
+Este projeto **não utiliza APIs pagas nem tokens de IA**.
+
+A geração de associações mentais funciona com:
+
+- lógica local  
+- templates  
+- combinações aleatórias  
+
+**Exemplo:**
 
 Input:
 H2O
 
-Generated visual prompt:
-"a giant letter H throwing two buckets of water into a massive ocean"
-
-Principle:
-The stranger and more visual the image, the easier it is to remember.
-
-This feature must appear as a highlighted section on the Home page.
-
-This is a core differentiator of the product.
+Output:
+Uma letra H gigante jogando dois baldes de água em um oceano
 
 ---
 
-### 5. Logic and Reasoning Training
+# 🧪 Base Técnica
 
-These exercises should develop structured thinking, pattern recognition, and abstraction.
-
-Include exercises such as:
-
-- Numeric Pattern Recognition
-- Symbol Difference Detection
-- Mental Rotation
-- Logical Sequences
-- Problem Decomposition
-
-Problem decomposition should include examples such as:
-
-Large problem:
-Build a login system
-
-Break into:
-- authentication
-- session
-- database
-- interface
-- security
-
-Expected benefits:
-- better reasoning
-- better abstraction
-- stronger structured problem solving
-- improved computational thinking
-
-These exercises should feel especially relevant for developers, engineers, and students.
+- React + TypeScript  
+- Vite  
+- TailwindCSS  
+- Web Audio API  
+- requestAnimationFrame  
 
 ---
 
-### 6. Programmer and Analytical Thinking Exercises
+# 🧠 Problemas Identificados (Análise Técnica)
 
-The platform should include exercises especially useful for programmers and mathematically oriented users.
-
-Include exercises such as:
-
-- mental rotation
-- step-by-step decomposition
-- algorithm simulation
-- sequence logic
-- pattern-based reasoning
-
-The product should present some exercises as:
-- useful for developers
-- useful before coding
-- useful for improving logical clarity
-
-This should be part of the app identity.
+- muitos exercícios são apenas texto + timer  
+- ausência de respiração pré-sessão  
+- falta de adaptação ao estado do usuário  
+- ausência de exercícios de criatividade  
+- ausência de feedback real de performance  
+- navegação visível em momentos de foco  
 
 ---
 
-### 7. Creativity and Fluid Thinking
+# 🚀 Melhorias Planejadas
 
-These exercises should stimulate imagination, divergent thinking, and flexible cognition.
+## P1 (alto impacto)
+- transformar exercícios em interativos  
+- adicionar respiração guiada obrigatória  
+- melhorar imersão  
 
-Include exercises such as:
+## P2
+- sistema de pontuação (Neural Score)  
+- sessões adaptativas  
+- check-in de estado mental  
 
-- non-dominant hand writing
-- free drawing
-- quick word association
-- visual imagination tasks
-- symbolic transformation exercises
-
-Expected benefits:
-- improved creativity
-- more flexible thinking
-- reduction of creative blockage
-- improved symbolic and visual cognition
-
-These exercises should feel light and enjoyable.
+## P3
+- exercícios de criatividade completos  
+- histórico de performance  
+- progressão de dificuldade  
 
 ---
 
-### 8. High-Pressure Mental Clarity
+# 🧠 Visão de Produto
 
-The app should include exercises inspired by training for focus under pressure.
+O Brain Activation não é um app de entretenimento.
 
-Include exercises such as:
+É uma ferramenta de performance cognitiva.
 
-- Tactical Breathing
-- Operational Visualization
-- Peripheral Awareness
-- Fast Reaction
-- Rapid Decision Tasks
+Ele combina:
 
-Examples of operational visualization:
-- imagine instruments
-- imagine sequence of actions
-- mentally simulate a procedure
+- corpo (respiração, coordenação)  
+- mente (atenção, lógica)  
+- cognição (memória, criatividade)  
 
-Expected benefits:
-- clarity under pressure
-- better decision-making
-- improved situational awareness
-- emotional regulation during demanding tasks
-
-These should be presented carefully as performance-oriented exercises, not as medical or military training.
+para ativação rápida antes de tarefas importantes.
 
 ---
 
-## Quick Routines
+# 👤 Público-Alvo
 
-The platform must include short guided routines for fast use.
-
-### 5-Minute Routine
-Example:
-- Cross Crawl — 2 min
-- Infinity Tracing — 1 min
-- Mirror Drawing — 2 min
-
-### 10-Minute Routine
-Example:
-- Coherent Breathing — 2 min
-- Eye Tracking — 2 min
-- Cross Activation — 2 min
-- Non-Dominant Hand Writing — 2 min
-- Free Drawing — 2 min
-
-### 15-Minute Cognitive Routine
-Example:
-- Tactical Breathing — 2 min
-- Eye Movements — 2 min
-- Memory Palace — 5 min
-- Mental Rotation — 3 min
-- Visual Association — 3 min
-
-These routines should be easy to start with a single click.
+- desenvolvedores  
+- estudantes  
+- profissionais de alta carga mental  
+- pessoas com dificuldade de foco  
 
 ---
 
-## Home Page Content Requirements
+# 💡 Filosofia
 
-The Home page must not only sell the product. It must also clearly communicate the main training pillars.
+Menos teoria.  
+Mais ativação real.  
 
-Include sections that explain:
-
-- what brain activation is
-- how short sessions help focus and memory
-- categories of training
-- visual memory generation with AI
-- fast routines for daily use
-
-Suggested sections:
-- hero section
-- categories overview
-- Visual Memory Generator highlight
-- quick activation routine
-- benefits section
-- CTA to start training
-
-The Visual Memory Generator must have a prominent highlight block on the Home page.
+Curto. Prático. Eficiente.
 
 ---
 
-## Content Style
+# 🚀 Status
 
-The language of the app should be:
-
-- clear
-- modern
-- intuitive
-- motivating
-- direct
-
-Avoid:
-- overly technical neuroscience language
-- exaggerated promises
-- medical claims
-- cluttered educational walls of text
-
-Prefer:
-- short explanations
-- actionable instructions
-- practical benefits
-- simple guided flows
-
----
-
-## Exercise Card Requirements
-
-Each exercise card should include:
-
-- title
-- category
-- color
-- short description
-- expected duration
-- simple instructions
-- benefits
-
-Optional:
-- difficulty
-- tags like “focus”, “memory”, “logic”, “before study”, “before coding”
-
----
-
-## Suggested Category Colors
-
-Use a strong visual system so users quickly identify training type.
-
-- Focus → blue
-- Memory → green
-- Logic → purple
-- Hemispheric Integration → orange
-- Mental Speed → red
-- Creativity → pink or yellow if needed
-
-This color system should be used consistently across cards, badges, filters, and progress indicators.
-
----
-
-## Product Identity
-
-This app should feel like a practical cognitive activation tool, not just a content library.
-
-It should combine:
-
-- guided exercises
-- interactive tasks
-- visual clarity
-- fast routines
-- progress tracking
-- AI-powered visual memorization
-
-The final experience should feel useful for:
-- students
-- developers
-- professionals
-- curious learners
-- people who want to “activate the brain” quickly before work or study
-## Fullscreen Exercise Experience
-
-All exercises must run in a fullscreen immersive mode.
-
-When a user starts an exercise, the interface must transition into a distraction-free fullscreen experience.
-
-This is essential for focus and cognitive engagement.
-
-### Behavior
-
-When clicking "Start Exercise":
-
-- the app navigates to a fullscreen exercise view
-- header and navigation disappear
-- only the exercise interface remains visible
-- the background should be minimal and calm
-- the exercise timer and instructions must remain visible
-
-### Layout Requirements
-
-The fullscreen layout should contain:
-
-center area:
-- main exercise interaction
-
-top area:
-- exercise title
-- short instructions
-
-bottom area:
-- timer
-- next button
-- progress indicator
-
-### Example Structure
-
-Fullscreen layout should look like:
-
-[Exercise Title]
-
-[Main Exercise Area]
-
-[Timer + Next Button]
-
-### Transition
-
-Entering fullscreen should include:
-
-- smooth animation
-- fade or slide transition
-- focus shift to the exercise
-
-Leaving fullscreen should return to the main app layout.
-
-### UX Principles
-
-Exercises must feel:
-
-- immersive
-- calm
-- distraction-free
-- simple to understand
-
-Avoid:
-
-- menus
-- sidebars
-- complex navigation during exercises
-
-### Mobile Experience
-
-Fullscreen mode must work perfectly on mobile.
-
-Requirements:
-
-- vertical centered layout
-- large touch targets
-- minimal text
-- clear instructions
-
+Em desenvolvimento.

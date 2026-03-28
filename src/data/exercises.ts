@@ -26,6 +26,16 @@ export const categoryThemes: Record<ExerciseCategory, CategoryTheme> = {
     description: 'Resposta rápida, agilidade e processamento instantâneo.',
     color: '#ef4444',
   },
+  creativity: {
+    label: 'Criatividade',
+    description: 'Pensamento divergente, associações remotas e inteligência fluida.',
+    color: '#ec4899',
+  },
+  pressure: {
+    label: 'Clareza sob Pressão',
+    description: 'Manutenção de desempenho cognitivo em situações de alta demanda.',
+    color: '#14b8a6',
+  },
 }
 
 const byCategory = <T extends ExerciseCategory>(category: T, entries: Omit<Exercise, 'category' | 'color'>[]) =>
@@ -38,16 +48,18 @@ const byCategory = <T extends ExerciseCategory>(category: T, entries: Omit<Exerc
 export const exercises: Exercise[] = [
   ...byCategory('focus', [
     {
-      id: 'respiracao-4444',
-      title: 'Respiração 4-4-4-4',
-      duration: 75,
-      description: 'Equaliza respiração e reduz ruído mental antes da sequência.',
+      id: 'respiracao-478',
+      title: 'Respiração 4-7-8',
+      duration: 90,
+      description: 'Activa o sistema parassimpático. Reduz cortisol e prepara o cérebro para foco profundo.',
       instructions: [
-        'Inspire por 4 segundos.',
-        'Segure por 4 segundos.',
-        'Expire por 4 segundos.',
-        'Segure por 4 segundos e repita até o timer terminar.',
+        'Inspire pelo nariz por 4 segundos.',
+        'Segure o ar por 7 segundos.',
+        'Expire pela boca por 8 segundos — lento, completo.',
+        'Repita o ciclo. Complete pelo menos 4 ciclos para efeito máximo.',
       ],
+      difficulty: 1,
+      benefits: ['Reduz ansiedade', 'Activa parassimpático', 'Prepara foco profundo'],
     },
     {
       id: 'rastreamento-ocular',
@@ -77,7 +89,8 @@ export const exercises: Exercise[] = [
       duration: 60,
       description: 'Treina foco sustentado e controle de impulsividade.',
       instructions: [
-        'Conte de 60 até 0 em passos de 3.',
+        'O sistema sorteia uma sequência de contagem reversa.',
+        'Você pode descer de 3 em 3, 4 em 4 ou 6 em 6, com início proporcional.',
         'Sempre que errar, retome calmamente do último número correto.',
         'Mantenha o ritmo estável até concluir o tempo.',
       ],
@@ -109,7 +122,7 @@ export const exercises: Exercise[] = [
     {
       id: 'lista-de-palavras',
       title: 'Lista de palavras rápida',
-      duration: 75,
+      duration: 78,
       description: 'Melhora retenção verbal com encadeamento breve.',
       instructions: [
         'Crie uma lista mental de 5 palavras.',
@@ -123,7 +136,7 @@ export const exercises: Exercise[] = [
       duration: 90,
       description: 'Transforma conceitos abstratos em imagens memoráveis.',
       instructions: [
-        'Escolha uma palavra abstrata, como energia ou foco.',
+        'Uma palavra abstrata é sorteada a cada rodada.',
         'Converta em uma imagem exagerada e em movimento.',
         'Observe mentalmente essa cena por alguns segundos e recupere-a.',
       ],
@@ -221,6 +234,80 @@ export const exercises: Exercise[] = [
       ],
     },
   ]),
+  ...byCategory('creativity', [
+    {
+      id: 'usos-alternativos',
+      title: 'Usos alternativos',
+      duration: 60,
+      description: 'Activa pensamento divergente forçando a mente a escapar da função óbvia dos objetos.',
+      instructions: [
+        'Um objeto comum será exibido (ex: TIJOLO).',
+        'Liste mentalmente o máximo de usos incomuns em 60 segundos.',
+        'Ignore os usos óbvios — quanto mais improvável, melhor.',
+        'Tente atingir pelo menos 8 usos únicos.',
+      ],
+      difficulty: 1,
+      benefits: ['Pensamento divergente', 'Flexibilidade cognitiva', 'Fluência criativa'],
+    },
+    {
+      id: 'cadeia-de-ideias',
+      title: 'Cadeia de ideias',
+      duration: 75,
+      description: 'Treina associação livre e velocidade de pensamento divergente.',
+      instructions: [
+        'Uma palavra-âncora será exibida.',
+        'Pense em uma palavra associada — qualquer associação serve.',
+        'Cada resposta torna-se o próximo ponto de partida.',
+        'Construa a cadeia mais longa possível sem travar.',
+      ],
+      difficulty: 2,
+      benefits: ['Associação livre', 'Fluidez verbal', 'Inteligência fluida'],
+    },
+    {
+      id: 'analogias-rapidas',
+      title: 'Analogias rápidas',
+      duration: 90,
+      description: 'Compara estruturas entre domínios distintos — base do pensamento criativo avançado.',
+      instructions: [
+        'Um par de conceitos será apresentado (ex: OLHO : CÂMERA).',
+        'Identifique a relação entre os dois.',
+        'Aplique a mesma relação a um novo par.',
+        'Velocidade e precisão são igualmente importantes.',
+      ],
+      difficulty: 2,
+      benefits: ['Raciocínio analógico', 'Integração de domínios', 'Abstração'],
+    },
+  ]),
+  ...byCategory('pressure', [
+    {
+      id: 'respiracao-tatica',
+      title: 'Respiração tática',
+      duration: 60,
+      description: 'Protocolo 4-4-4-4 usado por forças especiais para recuperar clareza sob estresse.',
+      instructions: [
+        'Inspire por 4 segundos.',
+        'Segure por 4 segundos.',
+        'Expire por 4 segundos.',
+        'Segure por 4 segundos. Repita sem pausar o ritmo.',
+      ],
+      difficulty: 1,
+      benefits: ['Controle emocional', 'Clareza sob pressão', 'Regulação do SNA'],
+    },
+    {
+      id: 'decisao-rapida',
+      title: 'Decisão rápida',
+      duration: 75,
+      description: 'Treina tomada de decisão binária sob restrição de tempo e carga cognitiva.',
+      instructions: [
+        'Um cenário simples será descrito.',
+        'Você tem 3 segundos para decidir A ou B.',
+        'Não existe resposta errada — o treino é a velocidade de decisão.',
+        'Reduza a hesitação sem perder a intenção.',
+      ],
+      difficulty: 3,
+      benefits: ['Velocidade de decisão', 'Tolerância à ambiguidade', 'Foco sob pressão'],
+    },
+  ]),
   ...byCategory('speed', [
     {
       id: 'reacao-rapida',
@@ -275,6 +362,8 @@ export const categoryOrder: ExerciseCategory[] = [
   'logic',
   'hemispheric',
   'speed',
+  'creativity',
+  'pressure',
 ]
 
 export const exercisesByCategory = exercises.reduce<Record<ExerciseCategory, Exercise[]>>(
@@ -288,10 +377,13 @@ export const exercisesByCategory = exercises.reduce<Record<ExerciseCategory, Exe
     logic: [],
     hemispheric: [],
     speed: [],
+    creativity: [],
+    pressure: [],
   },
 )
 
 export const dailyTrainingExercises = [
+  'respiracao-478',       // pré-sessão: ativa parassimpático
   'rastreamento-ocular',
   'atencao-periferica',
   'associacao-visual',

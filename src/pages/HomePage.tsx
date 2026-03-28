@@ -1,5 +1,13 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, BrainCircuit, Flame, Orbit, TimerReset, Zap } from 'lucide-react'
+import {
+  ArrowRight,
+  BrainCircuit,
+  Flame,
+  Orbit,
+  Sparkles,
+  TimerReset,
+  Zap,
+} from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 import { categoryOrder, categoryThemes, exercises, quickActivationExercises } from '../data/exercises'
@@ -17,6 +25,8 @@ const categoryIcons = {
   logic: Flame,
   hemispheric: Orbit,
   speed: TimerReset,
+  creativity: Sparkles,
+  pressure: BrainCircuit,
 }
 
 export function HomePage() {

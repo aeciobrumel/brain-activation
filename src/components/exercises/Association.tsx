@@ -11,7 +11,64 @@ interface ExerciseModuleProps {
   footerAction?: React.ReactNode
 }
 
-const abstractWords = ['FOCO', 'ENERGIA', 'CLAREZA', 'FLUXO', 'INTUICAO', 'PRESENCA']
+const abstractWords = [
+  'FOCO',
+  'ENERGIA',
+  'CLAREZA',
+  'FLUXO',
+  'INTUICAO',
+  'PRESENCA',
+  'DISCIPLINA',
+  'MEMORIA',
+  'ATENCAO',
+  'PRIORIDADE',
+  'RITMO',
+  'CONFIANCA',
+  'CALMA',
+  'PRESSAO',
+  'RESILIENCIA',
+  'ORDEM',
+  'CAOS',
+  'CRIATIVIDADE',
+  'IMPACTO',
+  'PRECISAO',
+  'VELOCIDADE',
+  'SILENCIO',
+  'CONEXAO',
+  'EQUILIBRIO',
+  'DECISAO',
+  'CORAGEM',
+  'DIRECAO',
+  'PACIENCIA',
+  'PERSISTENCIA',
+  'CURIOSIDADE',
+  'LUCIDEZ',
+  'EXPANSAO',
+  'INTENCAO',
+  'POTENCIA',
+  'VISAO',
+  'ESTRATEGIA',
+  'IMAGINACAO',
+  'CONTROLE',
+  'LEVEZA',
+  'ESTABILIDADE',
+  'OBJETIVO',
+  'ABUNDANCIA',
+  'TENSAO',
+  'ALINHAMENTO',
+  'CONSTRUCAO',
+  'ADAPTACAO',
+  'PRESICAO',
+  'ORGANIZACAO',
+  'PLANEJAMENTO',
+  'PERCEPCAO',
+  'SINCRONIA',
+  'INTENSIDADE',
+  'CONSISTENCIA',
+  'CONCENTRACAO',
+  'SERENIDADE',
+  'VITALIDADE',
+]
 
 export function Association({ duration, onComplete, footerAction }: ExerciseModuleProps) {
   const timer = useTimer({ duration, onComplete })
@@ -40,11 +97,17 @@ export function Association({ duration, onComplete, footerAction }: ExerciseModu
       }}
       footerAction={footerAction}
       metrics={
-        <div className="rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-600">
-          Fase atual:{' '}
-          <span className="font-semibold text-slate-950">
-            {phase === 'imagine' ? 'Crie a imagem mental' : 'Recupere a imagem agora'}
-          </span>
+        <div className="grid gap-2 sm:grid-cols-2">
+          <div className="rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-600">
+            Fase atual:{' '}
+            <span className="font-semibold text-slate-950">
+              {phase === 'imagine' ? 'Crie a imagem mental' : 'Recupere a imagem agora'}
+            </span>
+          </div>
+          <div className="rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-600">
+            Banco ativo:{' '}
+            <span className="font-semibold text-slate-950">{abstractWords.length} palavras</span>
+          </div>
         </div>
       }
     >
@@ -60,7 +123,7 @@ export function Association({ duration, onComplete, footerAction }: ExerciseModu
             <div className="text-[clamp(0.95rem,1.4vw,1.125rem)] font-semibold text-slate-950">
               {phase === 'imagine'
                 ? 'Crie uma imagem exagerada, absurda e memorável para essa palavra.'
-                : 'Recall the image now.'}
+                : 'Recupere a imagem agora e torne a cena mais vívida na mente.'}
             </div>
           </div>
         </div>
