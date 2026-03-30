@@ -17,11 +17,13 @@ interface ExerciseModuleProps {
 }
 
 type Shape = 'circle' | 'square' | 'triangle'
+type DifficultyLevel = 1 | 2 | 3
 
 interface RoundState {
   gridSize: number
   oddIndex: number
   shape: Shape
+  oddShape: Shape
   color: string
   oddColor: string
   rotation: number
@@ -30,15 +32,124 @@ interface RoundState {
   oddScale: number
 }
 
-const LEVEL_CONFIG = {
-  1: { gridSize: 3, rotation: 0, oddRotation: 0, scale: 1, oddScale: 1, color: '#f8fafc', oddColor: '#fb7185' },
-  2: { gridSize: 4, rotation: 0, oddRotation: 15, scale: 1, oddScale: 1, color: '#f8fafc', oddColor: '#f8fafc' },
-  3: { gridSize: 5, rotation: 0, oddRotation: 0, scale: 1, oddScale: 0.92, color: '#f8fafc', oddColor: '#f8fafc' },
-} as const
+type RoundTemplate = Omit<RoundState, 'gridSize' | 'oddIndex'>
+
+const BASE_SYMBOL_COLOR = '#f8fafc'
+const LEVEL_CONFIG: Record<DifficultyLevel, { gridSize: number; templates: readonly RoundTemplate[] }> = {
+  1: {
+    gridSize: 3,
+    templates: [
+      {
+        shape: 'circle',
+        oddShape: 'circle',
+        color: BASE_SYMBOL_COLOR,
+        oddColor: '#fb7185',
+        rotation: 0,
+        oddRotation: 0,
+        scale: 1,
+        oddScale: 1,
+      },
+      {
+        shape: 'square',
+        oddShape: 'square',
+        color: BASE_SYMBOL_COLOR,
+        oddColor: '#f59e0b',
+        rotation: 0,
+        oddRotation: 0,
+        scale: 1,
+        oddScale: 1,
+      },
+      {
+        shape: 'triangle',
+        oddShape: 'triangle',
+        color: BASE_SYMBOL_COLOR,
+        oddColor: '#22c55e',
+        rotation: 0,
+        oddRotation: 0,
+        scale: 1,
+        oddScale: 1,
+      },
+    ],
+  },
+  2: {
+    gridSize: 4,
+    templates: [
+      {
+        shape: 'square',
+        oddShape: 'square',
+        color: BASE_SYMBOL_COLOR,
+        oddColor: BASE_SYMBOL_COLOR,
+        rotation: 0,
+        oddRotation: 24,
+        scale: 1,
+        oddScale: 1,
+      },
+      {
+        shape: 'triangle',
+        oddShape: 'triangle',
+        color: BASE_SYMBOL_COLOR,
+        oddColor: BASE_SYMBOL_COLOR,
+        rotation: 0,
+        oddRotation: 22,
+        scale: 1,
+        oddScale: 1,
+      },
+      {
+        shape: 'circle',
+        oddShape: 'circle',
+        color: BASE_SYMBOL_COLOR,
+        oddColor: BASE_SYMBOL_COLOR,
+        rotation: 0,
+        oddRotation: 0,
+        scale: 1,
+        oddScale: 0.84,
+      },
+    ],
+  },
+  3: {
+    gridSize: 6,
+    templates: [
+      {
+        shape: 'square',
+        oddShape: 'square',
+        color: BASE_SYMBOL_COLOR,
+        oddColor: BASE_SYMBOL_COLOR,
+        rotation: 0,
+        oddRotation: 15,
+        scale: 1,
+        oddScale: 0.88,
+      },
+      {
+        shape: 'triangle',
+        oddShape: 'triangle',
+        color: BASE_SYMBOL_COLOR,
+        oddColor: BASE_SYMBOL_COLOR,
+        rotation: 0,
+        oddRotation: -18,
+        scale: 1,
+        oddScale: 0.9,
+      },
+      {
+        shape: 'circle',
+        oddShape: 'circle',
+        color: '#f8fafc',
+        oddColor: '#dbeafe',
+        rotation: 0,
+        oddRotation: 0,
+        scale: 1,
+        oddScale: 0.9,
+      },
+    ],
+  },
+}
 const MODULE_PROGRESS_TARGET = 12
 const SHAKE_RESET_DELAY_MS = 220
 
-function getPromotedLevel(level: 1 | 2 | 3, streak: number): 1 | 2 | 3 {
+function pickRandom<T>(items: readonly T[]) {
+  return items[Math.floor(Math.random() * items.length)] ?? items[0]
+}
+
+function getPromotedLevel(level: DifficultyLevel, streak: number): DifficultyLevel {
   if (streak > 0 && streak % 3 === 0) {
     return Math.min(level + 1, 3) as 1 | 2 | 3
   }
@@ -46,24 +157,26 @@ function getPromotedLevel(level: 1 | 2 | 3, streak: number): 1 | 2 | 3 {
   return level
 }
 
-function buildRound(level: 1 | 2 | 3): RoundState {
+function buildRound(level: DifficultyLevel): RoundState {
   const config = LEVEL_CONFIG[level]
-  const shapes: Shape[] = ['circle', 'square', 'triangle']
+  const template = pickRandom(config.templates)
+
   return {
     gridSize: config.gridSize,
     oddIndex: Math.floor(Math.random() * (config.gridSize * config.gridSize)),
-    shape: shapes[Math.floor(Math.random() * shapes.length)] ?? 'circle',
-    color: config.color,
-    oddColor: config.oddColor,
-    rotation: config.rotation,
-    oddRotation: config.oddRotation,
-    scale: config.scale,
-    oddScale: config.oddScale,
+    shape: template.shape,
+    oddShape: template.oddShape,
+    color: template.color,
+    oddColor: template.oddColor,
+    rotation: template.rotation,
+    oddRotation: template.oddRotation,
+    scale: template.scale,
+    oddScale: template.oddScale,
   }
 }
 
 export function OddOneOut({ duration, onComplete, footerAction }: ExerciseModuleProps) {
-  const [level, setLevel] = useState<1 | 2 | 3>(1)
+  const [level, setLevel] = useState<DifficultyLevel>(1)
   const [streak, setStreak] = useState(0)
   const [correctAnswers, setCorrectAnswers] = useState(0)
   const [totalAttempts, setTotalAttempts] = useState(0)
@@ -77,7 +190,7 @@ export function OddOneOut({ duration, onComplete, footerAction }: ExerciseModule
   const totalActiveMsRef = useRef(0)
   const pauseCountRef = useRef(0)
   const averageReactionRef = useRef(0)
-  const levelRef = useRef<1 | 2 | 3>(1)
+  const levelRef = useRef<DifficultyLevel>(1)
   const streakRef = useRef(0)
   const correctAnswersRef = useRef(0)
   const attemptsRef = useRef(0)
@@ -128,7 +241,7 @@ export function OddOneOut({ duration, onComplete, footerAction }: ExerciseModule
           accentColor: '#8b5cf6',
           front: (
             <ShapeToken
-              shape={round.shape}
+              shape={isOdd ? round.oddShape : round.shape}
               color={isOdd ? round.oddColor : round.color}
               rotation={isOdd ? round.oddRotation : round.rotation}
               scale={isOdd ? round.oddScale : round.scale}
@@ -136,7 +249,7 @@ export function OddOneOut({ duration, onComplete, footerAction }: ExerciseModule
           ),
           back: (
             <ShapeToken
-              shape={round.shape}
+              shape={isOdd ? round.oddShape : round.shape}
               color={isOdd ? round.oddColor : round.color}
               rotation={isOdd ? round.oddRotation : round.rotation}
               scale={isOdd ? round.oddScale : round.scale}

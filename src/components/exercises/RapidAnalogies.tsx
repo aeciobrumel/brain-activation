@@ -3,6 +3,9 @@ import type { ReactNode } from 'react'
 
 import { scoreGridExercise } from '../../lib/scoring'
 import { saveExerciseScore } from '../../lib/storage'
+import { getPlayerDifficulty } from '../../lib/difficultyAdapter'
+import { getRecentIds, markUsed } from '../../lib/repetitionGuard'
+import { getRandomAnalogy } from '../../data/analogies'
 import { ExerciseChoices } from './ExerciseChoices'
 import { ExerciseFrame } from './ExerciseFrame'
 import { ExerciseViewport } from './ExerciseViewport'
@@ -24,21 +27,18 @@ interface AnalogyQuestion {
   options: string[]
 }
 
-const ANALOGIES: AnalogyQuestion[] = [
-  { a: 'OLHO', b: 'CAMERA', c: 'OUVIDO', answer: 'MICROFONE', options: ['MICROFONE', 'RADIO', 'ANTENA', 'CAIXA'] },
-  { a: 'PEIXE', b: 'AGUA', c: 'PASSARO', answer: 'AR', options: ['AR', 'NINHO', 'ASA', 'VENTO'] },
-  { a: 'PINTOR', b: 'PINCEL', c: 'ESCRITOR', answer: 'CANETA', options: ['CANETA', 'LIVRO', 'PAPEL', 'TINTA'] },
-  { a: 'DIA', b: 'NOITE', c: 'VERAO', answer: 'INVERNO', options: ['INVERNO', 'CHUVA', 'OUTONO', 'JANEIRO'] },
-  { a: 'MOTOR', b: 'CARRO', c: 'CORACAO', answer: 'CORPO', options: ['CORPO', 'SANGUE', 'PULMAO', 'PEITO'] },
-  { a: 'CHAVE', b: 'PORTA', c: 'SENHA', answer: 'CONTA', options: ['CONTA', 'CELULAR', 'TECLADO', 'SITE'] },
-]
-
-function nextAnalogy(index: number) {
-  return ANALOGIES[index % ANALOGIES.length] ?? ANALOGIES[0]
+function pickNextAnalogy(usedInSession: Set<string>): AnalogyQuestion {
+  const difficulty = getPlayerDifficulty('analogias-rapidas')
+  const recentGlobal = getRecentIds('analogies')
+  const exclude = new Set([...recentGlobal, ...usedInSession])
+  const entry = getRandomAnalogy(difficulty, exclude)
+  markUsed('analogies', entry.id)
+  return { a: entry.a, b: entry.b, c: entry.c, answer: entry.answer, options: entry.options }
 }
 
 export function RapidAnalogies({ duration, onComplete, footerAction }: ExerciseModuleProps) {
-  const [questionIndex, setQuestionIndex] = useState(0)
+  const [usedInSession] = useState(() => new Set<string>())
+  const [question, setQuestion] = useState<AnalogyQuestion>(() => pickNextAnalogy(usedInSession))
   const [correctAnswers, setCorrectAnswers] = useState(0)
   const [totalAnswers, setTotalAnswers] = useState(0)
   const [streak, setStreak] = useState(0)
@@ -55,7 +55,11 @@ export function RapidAnalogies({ duration, onComplete, footerAction }: ExerciseM
   const averageReactionRef = useRef(0)
   const maxStreakRef = useRef(0)
 
-  const question = nextAnalogy(questionIndex)
+  const advanceQuestion = () => {
+    const id = `${question.a}-${question.b}-${question.c}`
+    usedInSession.add(id)
+    setQuestion(pickNextAnalogy(usedInSession))
+  }
 
   const countdown = usePromptCountdown({
     durationMs: 8000,
@@ -63,7 +67,7 @@ export function RapidAnalogies({ duration, onComplete, footerAction }: ExerciseM
       totalAnswersRef.current += 1
       setTotalAnswers(totalAnswersRef.current)
       setStreak(0)
-      setQuestionIndex((current) => current + 1)
+      advanceQuestion()
       countdown.start(8000)
       promptStartedAtRef.current = timer.elapsedMs
     },
@@ -121,7 +125,7 @@ export function RapidAnalogies({ duration, onComplete, footerAction }: ExerciseM
       setStreak(0)
     }
 
-    setQuestionIndex((current) => current + 1)
+    advanceQuestion()
     countdown.start(8000)
     promptStartedAtRef.current = timer.elapsedMs
   }
@@ -146,7 +150,8 @@ export function RapidAnalogies({ duration, onComplete, footerAction }: ExerciseM
   }
 
   const handleRestart = () => {
-    setQuestionIndex(0)
+    usedInSession.clear()
+    setQuestion(pickNextAnalogy(usedInSession))
     setCorrectAnswers(0)
     setTotalAnswers(0)
     setStreak(0)

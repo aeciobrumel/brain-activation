@@ -1,0 +1,182 @@
+LISTA DE PALAVRAS AMPLIADA
+Arquivo gerado para expansão do exercício 'Lista de palavras'.
+Total de palavras únicas: 994
+Categorias incluídas: objetos, acoes, natureza, tecnologia, emocoes, abstratos, alimentos, lugares
+
+=== OBJETOS (195 palavras) ===
+cadeira, mesa, janela, porta, lápis, caneta, caderno, mochila, garrafa, relógio, espelho, tesoura
+martelo, chave, cadeado, panela, prato, colher, garfo, faca, copo, tigela, toalha, almofada
+colchão, sofá, poltrona, estante, gaveta, armário, cabide, sapato, camisa, calça, casaco, boné
+chapéu, luva, meia, anel, pulseira, colar, brinco, escova, pente, sabonete, toalhete, balde
+vassoura, rodo, aspirador, lanterna, vela, isqueiro, bateria, carregador, fone, teclado, mouse, monitor
+notebook, tablet, celular, câmera, tripé, microfone, caixa, caixote, sacola, maleta, mala, guarda-chuva
+óculos, binóculo, bússola, mapa, livro, revista, jornal, álbum, quadro, pincel, tinta, borracha
+apontador, régua, compasso, grampeador, clipe, adesivo, envelope, caixa-postal, controle, tomada, interruptor, ventilador
+aquecedor, geladeira, fogão, forno, liquidificador, batedeira, cafeteira, filtro, jarra, rede, banco, escada
+martinete, carrinho, bicicleta, patinete, capacete, volante, freio, chassi, motor, parafuso, porca, arruela
+prego, serrote, furadeira, alicate, trena, nível, mangueira, vaso, prancha, skate, bola, raquete
+tabuleiro, dado, baralho, violão, guitarra, teclado-musical, tambor, flauta, ukulele, alto-falante, rádio, televisão
+projetor, impressora, scanner, pendrive, cabo, adaptador, cofre, carranca, amuleto, escultura, troféu, medalha
+moeda, cédula, carteira, documento, passaporte, selo, carimbo, agenda, calendário, termômetro, estetoscópio, máscara
+seringa, bandagem, frasco, ampola, balança, cronômetro, medidor, prancheta, colete, barraca, cantil, corda
+âncora, remo, boia, prancha-surf, travesseiro, edredom, tapete, cortina, abajur, lustre, cabana, baú
+ampulheta, catavento, totem
+
+=== ACOES (160 palavras) ===
+andar, correr, pular, saltar, girar, virar, dobrar, abrir, fechar, empurrar, puxar, levantar
+sentar, deitar, olhar, encarar, piscar, escutar, ouvir, falar, gritar, sussurrar, cantar, assobiar
+respirar, inspirar, expirar, meditar, pensar, lembrar, esquecer, imaginar, criar, desenhar, pintar, escrever
+apagar, rabiscar, ler, estudar, ensinar, aprender, explicar, questionar, responder, calcular, somar, subtrair
+medir, comparar, ordenar, misturar, cozinhar, assar, ferver, fritar, cortar, descascar, lavar, limpar
+varrer, organizar, separar, juntar, encaixar, montar, desmontar, construir, quebrar, consertar, martelar, parafusar
+costurar, bordar, colar, prender, soltar, amarrar, desatar, navegar, explorar, investigar, pesquisar, descobrir
+mapear, registrar, anotar, arquivar, planejar, projetar, liderar, cooperar, ajudar, acolher, abraçar, beijar
+sorrir, chorar, rir, celebrar, negociar, decidir, avaliar, julgar, priorizar, testar, validar, programar
+codificar, depurar, executar, compilar, baixar, enviar, compartilhar, salvar, editar, publicar, clicar, arrastar
+solucionar, adaptar, improvisar, persistir, descansar, dormir, acordar, alongar, treinar, malhar, pedalar, nadar
+escalar, remar, plantar, regar, colher, semeiar, lapidar, polir, observar, contemplar, admirar, duvidar
+arriscar, proteger, defender, atacar, esconder, revelar, encurtar, alongar, esfriar, aquecer, acelerar, frear
+equilibrar, alinhar, desviar, retornar
+
+=== NATUREZA (160 palavras) ===
+árvore, floresta, bosque, selva, mata, campo, planície, vale, montanha, serra, colina, penhasco
+caverna, rio, riacho, córrego, lago, lagoa, mar, oceano, praia, duna, ilha, arquipélago
+vulcão, gelo, geleira, neve, granizo, chuva, garoa, tempestade, trovão, relâmpago, neblina, bruma
+vento, brisa, furacão, tornado, nuvem, céu, horizonte, aurora, crepúsculo, amanhecer, entardecer, sol
+lua, estrela, constelação, planeta, cometa, meteoro, galáxia, terra, solo, argila, areia, pedra
+rocha, cristal, quartzo, ametista, esmeralda, safira, rubi, folha, raiz, tronco, casca, semente
+flor, pétala, espinho, fruto, pomar, vinha, mangue, pântano, cerrado, caatinga, tundra, taiga
+recife, coral, maré, estuário, bacia, nascente, cachoeira, queda-dágua, grama, musgo, samambaia, orquídea
+girassol, lavanda, alecrim, hortelã, abelha, formiga, borboleta, mariposa, joaninha, libélula, aranha, escorpião
+tatu, tamanduá, capivara, veado, lobo, raposa, urso, leão, tigre, onça, elefante, girafa
+rinoceronte, hipopótamo, zebra, cavalo, vaca, ovelha, cabra, porco, galo, galinha, pato, ganso
+águia, falcão, coruja, beija-flor, gaivota, andorinha, tubarão, golfinho, baleia, polvo, lula, caranguejo
+estrela-do-mar, cavalo-marinho, rã, sapo, cobra, lagarto, camaleão, jacaré, tartaruga, pinguim, foca, lontra
+castor, coala, canguru, pavão
+
+=== TECNOLOGIA (160 palavras) ===
+algoritmo, sistema, plataforma, interface, servidor, cliente, rede, nuvem, banco-de-dados, consulta, índice, cache
+fila, mensageria, token, sessão, autenticação, autorização, criptografia, hash, firewall, proxy, gateway, roteador
+switch, pacote, protocolo, domínio, subdomínio, dns, api, endpoint, request, response, payload, webhook
+socket, thread, processo, container, docker, kubernetes, cluster, pod, pipeline, deploy, build, commit
+branch, merge, rebase, pull-request, issue, bug, feature, hotfix, rollback, release, versionamento, teste
+unitário, integração, e2e, mock, stub, benchmark, monitoramento, log, métrica, telemetria, dashboard, alerta
+latência, throughput, escalabilidade, disponibilidade, redundância, backup, replicação, migração, frontend, backend, fullstack, componente
+hook, estado, contexto, props, router, middleware, controller, service, repository, model, migration, seeder
+factory, resource, enum, validator, typescript, javascript, php, laravel, react, vite, node, python
+java, go, rust, sql, html, css, tailwind, shadcn, axios, sanctum, redis, nginx
+ubuntu, linux, kernel, driver, bios, firmware, processador, memória, gpu, ssd, hd, placa-mãe
+fonte, gabinete, periférico, teclado-mecânico, monitor-ultrawide, headset, microcontrolador, sensor, automação, iot, inteligência-artificial, machine-learning
+rede-neural, dataset, prompt, inferência, modelo, embedding, vetor, classificação, predição, análise, simulação, renderização
+otimização, compilador, interpretador, script
+
+=== EMOCOES (80 palavras) ===
+alegria, tristeza, raiva, calma, medo, coragem, ansiedade, serenidade, euforia, nostalgia, esperança, desânimo
+entusiasmo, tédio, gratidão, culpa, orgulho, vergonha, carinho, afeto, amor, amizade, saudade, encanto
+admiração, respeito, confiança, desconfiança, ciúme, insegurança, alívio, tensão, paz, frustração, determinação, empatia
+compaixão, solidão, pertencimento, motivação, curiosidade, espanto, surpresa, contentamento, satisfação, prazer, desprazer, exaustão
+vitalidade, ânsia, impulso, equilíbrio, harmonia, sensibilidade, resiliência, ousadia, prudência, leveza, melancolia, ardor
+consolo, acolhimento, firmeza, desespero, otimismo, pessimismo, tranquilidade, agitação, delicadeza, ternura, irritação, deslumbramento
+timidez, ousadia, compromisso, apreensão, segurança, desorientação, lucidez, clareza
+
+=== ABSTRATOS (100 palavras) ===
+ideia, conceito, teoria, hipótese, paradoxo, entropia, ordem, caos, tempo, espaço, memória, atenção
+consciência, identidade, essência, propósito, sentido, virtude, ética, moral, justiça, verdade, beleza, sabedoria
+intuição, lógica, razão, imaginação, criatividade, inovação, complexidade, simplicidade, equilíbrio, ritmo, harmonia, contraste
+perspectiva, liberdade, limite, possibilidade, probabilidade, certeza, dúvida, mudança, transformação, continuidade, ruptura, origem
+destino, energia, força, vontade, disciplina, hábito, constância, excelência, potencial, clareza, foco, estratégia
+prioridade, visão, missão, valor, legado, abundância, escassez, escopo, estrutura, processo, resultado, impacto
+conexão, relação, causalidade, analogia, simetria, assimetria, abstração, síntese, análise, interpretação, critério, qualidade
+precisão, profundidade, superfície, resposta, pergunta, contexto, cenário, narrativa, metáfora, símbolo, presença, ausência
+silêncio, mistério, transcendência, imanência
+
+=== ALIMENTOS (80 palavras) ===
+arroz, feijão, lentilha, grão-de-bico, ervilha, milho, aveia, trigo, centeio, cevada, quinoa, macarrão
+pão, bolo, biscoito, torrada, panqueca, queijo, iogurte, leite, manteiga, requeijão, creme, ovo
+frango, carne, peixe, salmão, atum, sardinha, camarão, tofu, cogumelo, tomate, alface, rúcula
+espinafre, brócolis, couve-flor, cenoura, beterraba, batata, mandioca, abóbora, pepino, abobrinha, berinjela, cebola
+alho, pimentão, salsa, cebolinha, coentro, manjericão, orégano, alecrim, maçã, banana, laranja, uva
+morango, abacaxi, mamão, melancia, melão, manga, pera, kiwi, pêssego, ameixa, cereja, café
+chá, suco, água, mel, cacau, chocolate, castanha, amendoim
+
+=== LUGARES (80 palavras) ===
+cidade, vila, bairro, rua, avenida, praça, parque, jardim, mercado, feira, loja, biblioteca
+escola, faculdade, universidade, museu, teatro, cinema, estádio, academia, hospital, farmácia, padaria, restaurante
+cafeteria, aeroporto, rodoviária, estação, ponte, viaduto, túnel, porto, farol, castelo, fortaleza, templo
+igreja, mosteiro, palácio, torre, cabana, refúgio, fazenda, sítio, chácara, galpão, oficina, laboratório
+observatório, estúdio, escritório, tribunal, cartório, delegacia, quartel, arena, ginásio, piscina, quadra, playground
+deserto, oásis, floresta, praia, ilha, montanha, vale, caverna, trilha, acampamento, mirante, fronteira
+alfândega, condomínio, apartamento, casa, sobrado, porão, sótão, varanda
+
+=== LISTA GERAL EM ORDEM ALFABÉTICA ===
+abacaxi, abajur, abelha, abobrinha, abraçar, abrir, abstração, abundância, abóbora, academia, acampamento, acelerar, acolher, acolhimento
+acordar, adaptador, adaptar, adesivo, admirar, admiração, aeroporto, afeto, agenda, agitação, ajudar, alecrim, alegria, alerta
+alface, alfândega, algoritmo, alho, alicate, alinhar, almofada, alongar, alto-falante, alívio, amanhecer, amarrar, ameixa, amendoim
+ametista, amizade, amor, ampola, ampulheta, amuleto, analogia, andar, andorinha, anel, anotar, ansiedade, análise, apagar
+apartamento, api, apontador, apreensão, aprender, aquecedor, aquecer, aranha, ardor, areia, arena, argila, armário, arquipélago
+arquivar, arrastar, arriscar, arroz, arruela, aspirador, assar, assimetria, assobiar, atacar, atenção, atum, aurora, ausência
+autenticação, automação, autorização, avaliar, aveia, avenida, axios, bacia, backend, backup, bairro, baixar, balança, balde
+baleia, banana, banco, banco-de-dados, bandagem, baralho, barraca, batata, batedeira, bateria, baú, beija-flor, beijar, beleza
+benchmark, berinjela, beterraba, biblioteca, bicicleta, binóculo, bios, biscoito, boia, bola, bolo, boné, borboleta, bordar
+borracha, bosque, branch, brinco, brisa, bruma, brócolis, bug, build, bússola, caatinga, cabana, cabide, cabo
+cabra, cacau, cache, cachoeira, cadeado, cadeira, caderno, cafeteira, cafeteria, café, caixa, caixa-postal, caixote, calcular
+calendário, calma, calça, camaleão, camarão, camisa, campo, caneta, canguru, cantar, cantil, caos, capacete, capivara
+caranguejo, carimbo, carinho, carne, carranca, carregador, carrinho, carteira, cartório, casa, casaco, casca, castanha, castelo
+castor, catavento, causalidade, cavalo, cavalo-marinho, caverna, cebola, cebolinha, celebrar, celular, cenoura, centeio, cenário, cereja
+cerrado, certeza, cevada, chapéu, chassi, chave, chocolate, chorar, chuva, chá, chácara, cidade, cinema, ciúme
+clareza, classificação, clicar, cliente, clipe, cluster, coala, cobra, codificar, coentro, cofre, cogumelo, colar, colchão
+colete, colher, colina, cometa, commit, compaixão, comparar, compartilhar, compasso, compilador, compilar, complexidade, componente, compromisso
+conceito, condomínio, conexão, confiança, consciência, consertar, consolo, constelação, construir, constância, consulta, container, contemplar, contentamento
+contexto, continuidade, contraste, controle, controller, cooperar, copo, coragem, coral, corda, correr, cortar, cortina, coruja
+costurar, couve-flor, cozinhar, creme, crepúsculo, criar, criatividade, criptografia, cristal, critério, cronômetro, css, culpa, curiosidade
+câmera, cédula, céu, córrego, dado, dashboard, dataset, decidir, defender, deitar, delegacia, delicadeza, deploy, depurar
+desatar, descansar, descascar, descobrir, desconfiança, desenhar, deserto, desespero, deslumbramento, desmontar, desorientação, desprazer, destino, desviar
+desânimo, determinação, disciplina, disponibilidade, dns, dobrar, docker, documento, domínio, dormir, driver, duna, duvidar, dúvida
+e2e, editar, edredom, elefante, embedding, empatia, empurrar, encaixar, encanto, encarar, encurtar, endpoint, energia, ensinar
+entardecer, entropia, entusiasmo, enum, envelope, enviar, equilibrar, equilíbrio, ervilha, escada, escalabilidade, escalar, escassez, escola
+esconder, escopo, escorpião, escova, escrever, escritório, escultura, escutar, esfriar, esmeralda, espanto, espaço, espelho, esperança
+espinafre, espinho, esquecer, essência, estado, estante, estação, estetoscópio, estratégia, estrela, estrela-do-mar, estrutura, estudar, estuário
+estádio, estúdio, euforia, exaustão, excelência, executar, expirar, explicar, explorar, faca, factory, faculdade, falar, falcão
+farmácia, farol, fazenda, feature, fechar, feijão, feira, ferver, fila, filtro, firewall, firmeza, firmware, flauta
+flor, floresta, foca, foco, fogão, folha, fone, fonte, formiga, forno, fortaleza, força, frango, frasco
+frear, freio, fritar, fronteira, frontend, frustração, fruto, fullstack, furacão, furadeira, gabinete, gaivota, galinha, galo
+galpão, galáxia, ganso, garfo, garoa, garrafa, gateway, gaveta, geladeira, geleira, gelo, ginásio, girafa, girar
+girassol, go, golfinho, gpu, grama, grampeador, granizo, gratidão, gritar, grão-de-bico, guarda-chuva, guitarra, harmonia, hash
+hd, headset, hipopótamo, hipótese, hook, horizonte, hortelã, hospital, hotfix, html, hábito, ideia, identidade, igreja
+ilha, imaginar, imaginação, imanência, impacto, impressora, improvisar, impulso, inferência, inovação, insegurança, inspirar, integração, inteligência-artificial
+interface, interpretador, interpretação, interruptor, intuição, investigar, iogurte, iot, irritação, isqueiro, issue, jacaré, janela, jardim
+jarra, java, javascript, joaninha, jornal, julgar, juntar, justiça, kernel, kiwi, kubernetes, laboratório, lagarto, lago
+lagoa, lanterna, lapidar, laranja, laravel, latência, lavanda, lavar, legado, leite, lembrar, lentilha, ler, levantar
+leveza, leão, liberdade, libélula, liderar, limite, limpar, linux, liquidificador, livro, lobo, log, loja, lontra
+lua, lucidez, lula, lustre, luva, lápis, lógica, macarrão, machine-learning, mala, maleta, malhar, mamão, mandioca
+manga, mangue, mangueira, manjericão, manteiga, mapa, mapear, mar, mariposa, martelar, martelo, martinete, maré, mata
+maçã, medalha, medidor, medir, meditar, medo, meia, mel, melancia, melancolia, melão, memória, mensageria, mercado
+merge, mesa, meteoro, metáfora, microcontrolador, microfone, middleware, migration, migração, milho, mirante, missão, misturar, mistério
+mochila, mock, model, modelo, moeda, monitor, monitor-ultrawide, monitoramento, montanha, montar, moral, morango, mosteiro, motivação
+motor, mouse, mudança, museu, musgo, máscara, métrica, nadar, narrativa, nascente, navegar, neblina, negociar, neve
+nginx, node, nostalgia, notebook, nuvem, nível, observar, observatório, oceano, oficina, olhar, onça, ordem, ordenar
+organizar, orgulho, origem, orquídea, orégano, otimismo, otimização, ousadia, ouvir, ovelha, ovo, oásis, pacote, padaria
+palácio, panela, panqueca, paradoxo, parafusar, parafuso, parque, passaporte, patinete, pato, pavão, payload, paz, pedalar
+pedra, peixe, pendrive, penhasco, pensar, pente, pepino, pera, pergunta, periférico, persistir, perspectiva, pertencimento, pesquisar
+pessimismo, php, pimentão, pincel, pinguim, pintar, pipeline, piscar, piscina, placa-mãe, planejar, planeta, plantar, planície
+plataforma, playground, pod, polir, poltrona, polvo, pomar, ponte, porca, porco, porta, porto, porão, possibilidade
+potencial, praia, prancha, prancha-surf, prancheta, prato, prazer, praça, precisão, predição, prego, prender, presença, prioridade
+priorizar, probabilidade, processador, processo, profundidade, programar, projetar, projetor, prompt, props, propósito, proteger, protocolo, proxy
+prudência, publicar, pular, pull-request, pulseira, puxar, python, pântano, pão, pétala, pêssego, quadra, quadro, qualidade
+quartel, quartzo, quebrar, queda-dágua, queijo, questionar, quinoa, rabiscar, raiva, raiz, raposa, raquete, razão, react
+rebase, recife, rede, rede-neural, redis, redundância, refúgio, regar, registrar, relação, release, relâmpago, relógio, remar
+remo, renderização, replicação, repository, requeijão, request, resiliência, resource, respeito, respirar, responder, response, resposta, restaurante
+resultado, retornar, revelar, revista, riacho, rinoceronte, rio, rir, ritmo, rocha, rodo, rodoviária, rollback, roteador
+router, rua, rubi, ruptura, rust, rádio, rã, régua, rúcula, sabedoria, sabonete, sacola, safira, salmão
+salsa, saltar, salvar, samambaia, sanctum, sapato, sapo, sardinha, satisfação, saudade, scanner, script, seeder, segurança
+selo, selva, semeiar, semente, sensibilidade, sensor, sentar, sentido, separar, serenidade, seringa, serra, serrote, service
+servidor, sessão, shadcn, silêncio, simetria, simplicidade, simulação, sistema, skate, sobrado, socket, sofá, sol, solidão
+solo, soltar, solucionar, somar, sorrir, sql, ssd, stub, subdomínio, subtrair, suco, superfície, surpresa, sussurrar
+switch, símbolo, síntese, sítio, sótão, tablet, tabuleiro, taiga, tailwind, tamanduá, tambor, tapete, tartaruga, tatu
+teatro, teclado, teclado-mecânico, teclado-musical, telemetria, televisão, tempestade, templo, tempo, tensão, teoria, termômetro, ternura, terra
+tesoura, testar, teste, thread, throughput, tigela, tigre, timidez, tinta, toalha, toalhete, tofu, token, tomada
+tomate, tornado, torrada, torre, totem, tranquilidade, transcendência, transformação, travesseiro, treinar, trena, tribunal, trigo, trilha
+tripé, tristeza, troféu, tronco, trovão, tubarão, tundra, typescript, tédio, túnel, ubuntu, ukulele, unitário, universidade
+urso, uva, vaca, vale, validar, validator, valor, varanda, varrer, vaso, vassoura, veado, vela, ventilador
+vento, verdade, vergonha, versionamento, vetor, viaduto, vila, vinha, violão, virar, virtude, visão, vitalidade, vite
+volante, vontade, vulcão, webhook, zebra, água, águia, álbum, árvore, âncora, ânsia, ética, índice, óculos

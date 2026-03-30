@@ -1,15 +1,16 @@
-import { Bolt, Brain, ChartSpline, Library, Menu, Sparkles, X } from 'lucide-react'
+import { Brain, ChartSpline, Menu, Sparkles, X } from 'lucide-react'
 import { useState } from 'react'
 import { Link, NavLink, Outlet } from 'react-router-dom'
 
 import { Button } from '../../components/ui/Button'
+import { categoryIcons } from '../../data/icons'
 import { cn } from '../../lib/helpers'
 
 const navigation = [
   { to: '/', label: 'Home', icon: Sparkles },
-  { to: '/daily-training', label: 'Treino Diário', icon: Brain },
-  { to: '/quick-activation', label: 'Ativação Rápida', icon: Bolt },
-  { to: '/library', label: 'Biblioteca', icon: Library },
+  { to: '/daily-training', label: 'Treino Diário', icon: categoryIcons.focus },
+  { to: '/quick-activation', label: 'Ativação Rápida', icon: categoryIcons.speed },
+  { to: '/library', label: 'Biblioteca', icon: categoryIcons.memory },
   { to: '/progress', label: 'Progresso', icon: ChartSpline },
 ]
 

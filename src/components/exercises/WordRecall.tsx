@@ -4,6 +4,9 @@ import type { ReactNode } from 'react'
 import { scoreMemoryRecall } from '../../lib/scoring'
 import { slugify } from '../../lib/helpers'
 import { saveExerciseScore } from '../../lib/storage'
+import { getPlayerDifficulty } from '../../lib/difficultyAdapter'
+import { getRecentIds, markManyUsed } from '../../lib/repetitionGuard'
+import { getWordList } from '../../data/wordBank'
 import { ExerciseFrame } from './ExerciseFrame'
 import { ExerciseInput } from './ExerciseInput'
 import { ExerciseViewport } from './ExerciseViewport'
@@ -19,17 +22,14 @@ interface ExerciseModuleProps {
 
 const MEMORIZATION_MS = 30000
 const TRANSITION_MS = 3000
-
-const WORD_LISTS = [
-  ['LEAO', 'GIRAFA', 'TARTARUGA', 'LOBO', 'CORUJA', 'BALEIA', 'RAPOSA'],
-  ['VERMELHO', 'AZUL', 'AMARELO', 'VERDE', 'LARANJA', 'BRANCO', 'PRETO'],
-  ['PANELA', 'GARFO', 'PRATO', 'FACA', 'COLHER', 'COPO', 'TOALHA'],
-  ['MEDICA', 'ARQUITETO', 'PROGRAMADOR', 'MUSICO', 'PILOTO', 'ADVOGADA', 'PROFESSOR'],
-  ['MERCURIO', 'VENUS', 'TERRA', 'MARTE', 'JUPITER', 'SATURNO', 'NETUNO'],
-]
+const WORD_COUNT = 7
 
 function pickWordList() {
-  return WORD_LISTS[Math.floor(Math.random() * WORD_LISTS.length)] ?? WORD_LISTS[0]
+  const difficulty = getPlayerDifficulty('lista-de-palavras')
+  const exclude = getRecentIds('word-recall')
+  const words = getWordList(difficulty, WORD_COUNT, exclude)
+  markManyUsed('word-recall', words)
+  return words
 }
 
 function normalizeWord(value: string) {
@@ -168,7 +168,7 @@ export function WordRecall({ duration, onComplete, footerAction }: ExerciseModul
       metrics={
         <div className="grid gap-2 sm:grid-cols-3">
           <div className="rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-600">
-            Lembradas: <span className="font-semibold text-slate-950">{guessedWords.length} / 7</span>
+            Lembradas: <span className="font-semibold text-slate-950">{guessedWords.length} / {wordList.length}</span>
           </div>
           <div className="rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-600">
             Na ordem: <span className="font-semibold text-slate-950">{correctInOrder}</span>

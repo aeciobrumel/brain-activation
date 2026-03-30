@@ -1,16 +1,9 @@
 import { motion } from 'framer-motion'
-import {
-  ArrowRight,
-  BrainCircuit,
-  Flame,
-  Orbit,
-  Sparkles,
-  TimerReset,
-  Zap,
-} from 'lucide-react'
+import { ArrowRight, BrainCircuit, Flame, TimerReset, Zap } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 import { categoryOrder, categoryThemes, exercises, quickActivationExercises } from '../data/exercises'
+import { categoryIcons } from '../data/icons'
 import { ExerciseCard } from '../features/exercises/components/ExerciseCard'
 import { useProgress } from '../features/progress/hooks/useProgress'
 import { Button } from '../components/ui/Button'
@@ -18,16 +11,6 @@ import { Card } from '../components/ui/Card'
 import { CategoryBadge } from '../components/ui/CategoryBadge'
 import { StatCard } from '../components/ui/StatCard'
 import { fadeInUp, hexToRgba } from '../lib/helpers'
-
-const categoryIcons = {
-  focus: Zap,
-  memory: BrainCircuit,
-  logic: Flame,
-  hemispheric: Orbit,
-  speed: TimerReset,
-  creativity: Sparkles,
-  pressure: BrainCircuit,
-}
 
 export function HomePage() {
   const { progress } = useProgress()
@@ -94,7 +77,7 @@ export function HomePage() {
           <Card className="border-0 bg-slate-950 text-white">
             <div className="text-sm uppercase tracking-[0.24em] text-white/50">Quick mode</div>
             <div className="mt-3 text-4xl font-semibold">{quickActivationExercises.length}</div>
-            <p className="mt-3 text-sm leading-7 text-white/72">
+            <p className="mt-3 text-sm leading-7 text-white/75">
               exercícios em sequência para reiniciar atenção em cerca de 3 minutos.
             </p>
           </Card>

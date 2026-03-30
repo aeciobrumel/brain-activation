@@ -1,8 +1,9 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
+import { scoreRoutineExercise } from '../../lib/scoring'
+import { saveExerciseScore } from '../../lib/storage'
 import { ExerciseFrame } from './ExerciseFrame'
 import { ExerciseViewport } from './ExerciseViewport'
-import { useProgress } from './hooks/useProgress'
 import { useTimer } from './hooks/useTimer'
 
 interface ExerciseModuleProps {
@@ -12,138 +13,306 @@ interface ExerciseModuleProps {
   footerAction?: React.ReactNode
 }
 
-type Cue = 'left' | 'right' | 'cross-left' | 'cross-right'
+interface CrossTouchStep {
+  id: string
+  headline: string
+  detail: string
+  hand: 'left' | 'right'
+  knee: 'left' | 'right'
+}
+
+const DURATION_OPTIONS = [
+  { label: '2 min', value: 120 },
+  { label: '3 min', value: 180 },
+  { label: '5 min', value: 300 },
+]
+
+const CROSS_TOUCH_STEPS: CrossTouchStep[] = [
+  {
+    id: 'right-to-left',
+    headline: 'Mao direita no joelho esquerdo',
+    detail: 'Cruze o centro do corpo, toque e volte ao eixo.',
+    hand: 'right',
+    knee: 'left',
+  },
+  {
+    id: 'left-to-right',
+    headline: 'Mao esquerda no joelho direito',
+    detail: 'Mantenha o peito aberto e troque o lado sem travar.',
+    hand: 'left',
+    knee: 'right',
+  },
+]
+
+const CUE_INTERVAL_MS = 1050
+
+function getNodeClasses(isActive: boolean) {
+  return isActive
+    ? 'border-orange-300 bg-orange-400/22 text-white shadow-[0_0_32px_rgba(251,146,60,0.28)]'
+    : 'border-white/12 bg-white/5 text-white/65'
+}
 
 export function HemisphereCoordination({
   duration,
   onComplete,
   footerAction,
 }: ExerciseModuleProps) {
-  const timer = useTimer({ duration, onComplete })
-  const progress = useProgress(14)
-  const [cue, setCue] = useState<Cue>('left')
-  const [hits, setHits] = useState(0)
-  const [misses, setMisses] = useState(0)
+  const [selectedDuration, setSelectedDuration] = useState(Math.max(duration, 120))
+  const [stepIndex, setStepIndex] = useState(0)
+  const [completedCues, setCompletedCues] = useState(0)
+  const [pauseCount, setPauseCount] = useState(0)
+
+  const cueIntervalRef = useRef<number | null>(null)
+  const completedCuesRef = useRef(0)
+  const pauseCountRef = useRef(0)
+  const activeStartRef = useRef<number | null>(null)
+  const totalActiveMsRef = useRef(0)
+
+  const clearCueInterval = useCallback(() => {
+    if (cueIntervalRef.current !== null) {
+      window.clearInterval(cueIntervalRef.current)
+      cueIntervalRef.current = null
+    }
+  }, [])
+
+  const timer = useTimer({
+    duration: selectedDuration,
+    onComplete: () => {
+      clearCueInterval()
+
+      if (activeStartRef.current !== null) {
+        totalActiveMsRef.current += performance.now() - activeStartRef.current
+        activeStartRef.current = null
+      }
+
+      const expectedCues = Math.max(Math.floor((selectedDuration * 1000) / CUE_INTERVAL_MS), 1)
+
+      saveExerciseScore(
+        scoreRoutineExercise({
+          exerciseId: 'toque-cruzado',
+          completedCues: completedCuesRef.current,
+          expectedCues,
+          pauseCount: pauseCountRef.current,
+          durationMs: totalActiveMsRef.current,
+          totalDurationMs: selectedDuration * 1000,
+          raw: {
+            selectedDurationSeconds: selectedDuration,
+          },
+        }),
+      )
+
+      onComplete()
+    },
+  })
 
   useEffect(() => {
     if (!timer.isRunning) {
+      clearCueInterval()
       return
     }
 
-    const interval = window.setInterval(
-      () => {
-        const cues: Cue[] = ['left', 'right', 'cross-left', 'cross-right']
-        setCue(cues[Math.floor(Math.random() * cues.length)])
-      },
-      Math.max(420, 760 - timer.progress * 2.4),
-    )
+    cueIntervalRef.current = window.setInterval(() => {
+      completedCuesRef.current += 1
+      setCompletedCues(completedCuesRef.current)
+      setStepIndex((current) => (current + 1) % CROSS_TOUCH_STEPS.length)
+    }, CUE_INTERVAL_MS)
 
-    return () => window.clearInterval(interval)
-  }, [timer.isRunning, timer.progress])
+    return () => {
+      clearCueInterval()
+    }
+  }, [clearCueInterval, timer.isRunning])
 
-  useEffect(() => {
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (!timer.isRunning) {
-        return
+  const currentStep = CROSS_TOUCH_STEPS[stepIndex] ?? CROSS_TOUCH_STEPS[0]
+  const expectedCues = useMemo(
+    () => Math.max(Math.floor((selectedDuration * 1000) / CUE_INTERVAL_MS), 1),
+    [selectedDuration],
+  )
+
+  const handleStartPause = () => {
+    if (timer.isRunning) {
+      pauseCountRef.current += 1
+      setPauseCount(pauseCountRef.current)
+
+      if (activeStartRef.current !== null) {
+        totalActiveMsRef.current += performance.now() - activeStartRef.current
+        activeStartRef.current = null
       }
 
-      const expected = cue.endsWith('left') ? 'KeyA' : 'KeyL'
-
-      if (event.code !== 'KeyA' && event.code !== 'KeyL') {
-        return
-      }
-
-      if (event.code === expected) {
-        setHits((value) => value + 1)
-        progress.advance()
-      } else {
-        setMisses((value) => value + 1)
-      }
+      timer.pause()
+      return
     }
 
-    window.addEventListener('keydown', onKeyDown)
-    return () => window.removeEventListener('keydown', onKeyDown)
-  }, [cue, progress, timer.isRunning])
+    activeStartRef.current = performance.now()
+    timer.start()
+  }
 
-  const accuracy = useMemo(() => {
-    const total = hits + misses
-    if (total === 0) {
-      return 0
-    }
+  const handleRestart = () => {
+    clearCueInterval()
 
-    return (hits / total) * 100
-  }, [hits, misses])
+    completedCuesRef.current = 0
+    pauseCountRef.current = 0
+    activeStartRef.current = null
+    totalActiveMsRef.current = 0
+    setCompletedCues(0)
+    setPauseCount(0)
+    setStepIndex(0)
+    timer.reset()
+  }
+
+  const isLeftHandActive = currentStep.hand === 'left'
+  const isRightHandActive = currentStep.hand === 'right'
+  const isLeftKneeActive = currentStep.knee === 'left'
+  const isRightKneeActive = currentStep.knee === 'right'
+  const crossLineRotation = currentStep.id === 'right-to-left' ? '-24deg' : '24deg'
 
   return (
     <ExerciseFrame
       accentColor="#f97316"
       timeLeftSeconds={timer.timeLeftSeconds}
       timerProgress={timer.progress}
-      moduleProgress={accuracy}
+      moduleProgress={Math.min((completedCues / expectedCues) * 100, 100)}
       isRunning={timer.isRunning}
-      onStartPause={timer.isRunning ? timer.pause : timer.start}
-      onRestart={() => {
-        progress.reset()
-        setHits(0)
-        setMisses(0)
-        setCue('left')
-        timer.restart()
-      }}
+      onStartPause={handleStartPause}
+      onRestart={handleRestart}
       footerAction={footerAction}
       metrics={
-        <div className="grid gap-2 sm:grid-cols-3">
+        <div className="grid gap-2 sm:grid-cols-4">
           <div className="rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-600">
-            Acertos: <span className="font-semibold text-slate-950">{hits}</span>
+            Duracao:{' '}
+            <span className="font-semibold text-slate-950">{selectedDuration / 60} min</span>
           </div>
           <div className="rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-600">
-            Erros: <span className="font-semibold text-slate-950">{misses}</span>
+            Ritmos:{' '}
+            <span className="font-semibold text-slate-950">{completedCues}</span>
           </div>
           <div className="rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-600">
-            Precisão: <span className="font-semibold text-slate-950">{Math.round(accuracy)}%</span>
+            Pausas:{' '}
+            <span className="font-semibold text-slate-950">{pauseCount}</span>
+          </div>
+          <div className="rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-600">
+            Cadencia:{' '}
+            <span className="font-semibold text-slate-950">
+              {Math.round(60000 / CUE_INTERVAL_MS)} bpm
+            </span>
           </div>
         </div>
       }
     >
       <ExerciseViewport>
-        <div className="flex h-full w-full flex-col justify-center gap-3 text-center">
-          <div className="relative flex h-full w-full items-center justify-center rounded-[1.75rem] border border-slate-200 bg-white px-4 sm:px-6">
-            <div className="absolute inset-x-[10%] top-1/2 h-px -translate-y-1/2 bg-slate-200" />
-            {(cue === 'cross-left' || cue === 'cross-right') && (
-              <>
-                <div className="absolute inset-x-[12%] top-[22%] h-px rotate-[22deg] bg-orange-200" />
-                <div className="absolute inset-x-[12%] bottom-[22%] h-px -rotate-[22deg] bg-orange-200" />
-              </>
-            )}
-            <div className="flex items-center gap-3 sm:gap-8">
-              <div
-                className="flex h-16 w-16 items-center justify-center rounded-full border-8 text-lg transition sm:h-20 sm:w-20 sm:text-xl"
-                style={{
-                  borderColor: cue === 'left' || cue === 'cross-left' ? '#f97316' : '#e2e8f0',
-                  backgroundColor:
-                    cue === 'left' || cue === 'cross-left' ? 'rgba(249,115,22,0.16)' : '#f8fafc',
-                }}
-              >
-                A
+        <div className="grid h-full min-h-0 w-full max-h-full grid-rows-[auto_auto_minmax(0,1fr)] gap-4 rounded-[1.75rem] bg-[radial-gradient(circle_at_top,_rgba(249,115,22,0.18),_transparent_32%),linear-gradient(180deg,_#431407_0%,_#0f172a_100%)] px-4 py-5 text-white sm:px-6 [@media(max-height:800px)]:gap-3 [@media(max-height:800px)]:px-3 [@media(max-height:800px)]:py-4">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <div className="text-xs font-semibold uppercase tracking-[0.28em] text-orange-100/55">
+                Movimento guiado
               </div>
-              <div className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-400 sm:text-sm">
-                {cue.startsWith('cross') ? 'cross' : 'rhythm'}
+              <div className="mt-2 text-xl font-semibold text-white">{currentStep.headline}</div>
+            </div>
+            <div className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/75">
+              Sem sensores: siga o ritmo visual da tela.
+            </div>
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            {DURATION_OPTIONS.map((option) => {
+              const isSelected = selectedDuration === option.value
+              const isDisabled = timer.isRunning || timer.elapsedMs > 0
+
+              return (
+                <button
+                  key={option.value}
+                  type="button"
+                  disabled={isDisabled}
+                  onClick={() => setSelectedDuration(option.value)}
+                  aria-label={`${option.label}${isSelected ? ', selecionado' : ''}${isDisabled ? ', indisponivel durante a sessao' : ''}`}
+                  aria-pressed={isSelected}
+                  className="rounded-full border px-4 py-2 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-45"
+                  style={{
+                    borderColor: isSelected
+                      ? 'rgba(251,146,60,0.9)'
+                      : 'rgba(255,255,255,0.14)',
+                    backgroundColor: isSelected
+                      ? 'rgba(251,146,60,0.18)'
+                      : 'rgba(255,255,255,0.04)',
+                    color: '#ffffff',
+                  }}
+                >
+                  {option.label}
+                </button>
+              )
+            })}
+          </div>
+
+          <div className="grid h-full min-h-0 gap-4 [@media(max-height:800px)]:gap-3 lg:grid-cols-[minmax(0,1.2fr)_minmax(260px,0.8fr)]">
+            <div className="relative h-full min-h-0 overflow-hidden rounded-[1.75rem] border border-white/10 bg-black/15">
+              <div className="absolute inset-x-1/2 top-[16%] h-[60%] w-px -translate-x-1/2 bg-white/10" />
+              <div
+                className="absolute left-1/2 top-1/2 h-1 w-[44%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-orange-300/80 via-white/70 to-orange-300/80 transition-transform duration-300"
+                style={{ transform: `translate(-50%, -50%) rotate(${crossLineRotation})` }}
+              />
+
+              <div
+                className={`absolute left-[14%] top-[14%] flex h-20 w-20 items-center justify-center rounded-full border text-sm font-semibold transition-all [@media(max-height:800px)]:h-16 [@media(max-height:800px)]:w-16 [@media(max-height:800px)]:text-xs sm:h-24 sm:w-24 ${getNodeClasses(
+                  isLeftHandActive,
+                )}`}
+              >
+                Mao E
               </div>
               <div
-                className="flex h-16 w-16 items-center justify-center rounded-full border-8 text-lg transition sm:h-20 sm:w-20 sm:text-xl"
-                style={{
-                  borderColor: cue === 'right' || cue === 'cross-right' ? '#f97316' : '#e2e8f0',
-                  backgroundColor:
-                    cue === 'right' || cue === 'cross-right' ? 'rgba(249,115,22,0.16)' : '#f8fafc',
-                }}
+                className={`absolute right-[14%] top-[14%] flex h-20 w-20 items-center justify-center rounded-full border text-sm font-semibold transition-all [@media(max-height:800px)]:h-16 [@media(max-height:800px)]:w-16 [@media(max-height:800px)]:text-xs sm:h-24 sm:w-24 ${getNodeClasses(
+                  isRightHandActive,
+                )}`}
               >
-                L
+                Mao D
+              </div>
+              <div
+                className={`absolute bottom-[14%] left-[22%] flex h-20 w-20 items-center justify-center rounded-full border text-sm font-semibold transition-all [@media(max-height:800px)]:h-16 [@media(max-height:800px)]:w-16 [@media(max-height:800px)]:text-xs sm:h-24 sm:w-24 ${getNodeClasses(
+                  isLeftKneeActive,
+                )}`}
+              >
+                Joelho E
+              </div>
+              <div
+                className={`absolute bottom-[14%] right-[22%] flex h-20 w-20 items-center justify-center rounded-full border text-sm font-semibold transition-all [@media(max-height:800px)]:h-16 [@media(max-height:800px)]:w-16 [@media(max-height:800px)]:text-xs sm:h-24 sm:w-24 ${getNodeClasses(
+                  isRightKneeActive,
+                )}`}
+              >
+                Joelho D
+              </div>
+
+              <div className="absolute inset-x-6 bottom-6 rounded-[1.5rem] border border-white/10 bg-white/5 px-4 py-4 text-center [@media(max-height:800px)]:inset-x-4 [@media(max-height:800px)]:bottom-4 [@media(max-height:800px)]:px-3 [@media(max-height:800px)]:py-3">
+                <div className="text-xs font-semibold uppercase tracking-[0.24em] text-orange-100/55">
+                  Cue atual
+                </div>
+                <div className="mt-2 text-lg font-semibold text-white [@media(max-height:800px)]:text-base">
+                  {currentStep.headline}
+                </div>
+                <p className="mt-2 text-sm leading-6 text-white/70 [@media(max-height:800px)]:leading-5">
+                  {currentStep.detail}
+                </p>
+              </div>
+            </div>
+
+            <div className="grid min-h-0 content-start gap-3 [@media(max-height:800px)]:gap-2">
+              <div className="rounded-[1.5rem] border border-white/10 bg-white/5 px-4 py-4">
+                <div className="text-xs font-semibold uppercase tracking-[0.24em] text-orange-100/55">
+                  Execucao
+                </div>
+                <p className="mt-3 text-sm leading-7 text-white/75">
+                  Inicie e acompanhe as trocas na tela. A animacao faz o papel de metrônomo e o
+                  timer comeca logo apos a instrucao inicial.
+                </p>
+              </div>
+              <div className="rounded-[1.5rem] border border-white/10 bg-white/5 px-4 py-4">
+                <div className="text-xs font-semibold uppercase tracking-[0.24em] text-orange-100/55">
+                  Preparado para midia
+                </div>
+                <p className="mt-3 text-sm leading-7 text-white/75">
+                  O modal inicial deste exercicio ja aceita um video local para demonstracao. Basta
+                  adicionar o arquivo depois e apontar o caminho no cadastro do exercicio.
+                </p>
               </div>
             </div>
           </div>
-          <p className="text-[clamp(0.75rem,1vw,0.95rem)] leading-5 text-slate-600">
-            Toque <span className="font-semibold text-slate-950">A</span> para o lado esquerdo e{' '}
-            <span className="font-semibold text-slate-950">L</span> para o lado direito.
-          </p>
         </div>
       </ExerciseViewport>
     </ExerciseFrame>

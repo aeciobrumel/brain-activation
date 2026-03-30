@@ -1,9 +1,11 @@
-import { Clock3, Sparkles } from 'lucide-react'
+import { Clock3 } from 'lucide-react'
+import { createElement } from 'react'
 import { Link } from 'react-router-dom'
 
 import { Button } from '../../../components/ui/Button'
 import { CategoryBadge } from '../../../components/ui/CategoryBadge'
 import { Card } from '../../../components/ui/Card'
+import { getExerciseIcon } from '../../../data/icons'
 import type { Exercise } from '../types'
 import { hexToRgba } from '../../../lib/helpers'
 
@@ -13,6 +15,8 @@ interface ExerciseCardProps {
 }
 
 export function ExerciseCard({ exercise, compact = false }: ExerciseCardProps) {
+  const exerciseIcon = getExerciseIcon(exercise.id, exercise.category)
+
   return (
     <Card
       className="overflow-hidden border-0"
@@ -29,7 +33,7 @@ export function ExerciseCard({ exercise, compact = false }: ExerciseCardProps) {
           className="flex h-11 w-11 items-center justify-center rounded-2xl"
           style={{ backgroundColor: hexToRgba(exercise.color, 0.18), color: exercise.color }}
         >
-          <Sparkles className="h-5 w-5" />
+          {createElement(exerciseIcon, { className: 'h-5 w-5' })}
         </div>
       </div>
 
@@ -54,7 +58,7 @@ export function ExerciseCard({ exercise, compact = false }: ExerciseCardProps) {
             ))}
           </ul>
           <Link to={`/exercise/${exercise.id}`} className="mt-6 inline-flex">
-            <Button>Start Exercise</Button>
+            <Button>Iniciar exercício</Button>
           </Link>
         </>
       )}

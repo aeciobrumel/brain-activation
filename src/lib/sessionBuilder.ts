@@ -4,15 +4,6 @@ import { getExerciseScores, getBestScore } from './storage'
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
-function shuffle<T>(array: T[]): T[] {
-  const copy = [...array]
-  for (let i = copy.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[copy[i], copy[j]] = [copy[j], copy[i]]
-  }
-  return copy
-}
-
 /** Lower score = higher priority (never-attempted exercises get score 0). */
 function getExercisePriority(exerciseId: string): number {
   const best = getBestScore(exerciseId)

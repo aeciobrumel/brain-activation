@@ -1,11 +1,14 @@
+import { cn } from '../../lib/helpers'
+
 interface ProgressBarProps {
   value: number
   color?: string
+  className?: string
 }
 
-export function ProgressBar({ value, color = '#0f172a' }: ProgressBarProps) {
+export function ProgressBar({ value, color = '#0f172a', className }: ProgressBarProps) {
   return (
-    <div className="h-3 w-full overflow-hidden rounded-full bg-slate-200/80">
+    <div className={cn('h-3 w-full overflow-hidden rounded-full bg-slate-200/80', className)}>
       <div
         className="h-full rounded-full transition-[width] duration-500"
         style={{

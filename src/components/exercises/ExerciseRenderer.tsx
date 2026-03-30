@@ -25,6 +25,14 @@ import { ReverseCount } from './ReverseCount'
 import { SymbolNumberSwitch } from './SymbolNumberSwitch'
 import { VisualSequence } from './VisualSequence'
 import { WordRecall } from './WordRecall'
+import { ExerciseIntroProvider } from './ExerciseIntroContext'
+import {
+  AlternateNostrilBreathing,
+  HandBreathCoordination,
+  MantraCounting,
+  MudraBreathing,
+  SymmetricVisualization,
+} from './SomaticPractices'
 
 interface ExerciseRendererProps {
   exercise: Exercise
@@ -65,6 +73,11 @@ const EXERCISE_COMPONENTS: Record<string, ExerciseComponent> = {
   'analogias-rapidas': RapidAnalogies,
   'decisao-rapida': RapidDecision,
   'par-ou-impar': OddEven,
+  'respiracao-alternada': AlternateNostrilBreathing,
+  'mantra-contagem-mental': MantraCounting,
+  'mudras-respiracao': MudraBreathing,
+  'coordenacao-mao-respiracao': HandBreathCoordination,
+  'visualizacao-simetrica': SymmetricVisualization,
 }
 
 export function ExerciseRenderer({
@@ -78,11 +91,13 @@ export function ExerciseRenderer({
   }
 
   return (
-    <Component
-      duration={exercise.duration}
-      title={exercise.title}
-      onComplete={onComplete}
-      footerAction={footerAction}
-    />
+    <ExerciseIntroProvider exercise={exercise}>
+      <Component
+        duration={exercise.duration}
+        title={exercise.title}
+        onComplete={onComplete}
+        footerAction={footerAction}
+      />
+    </ExerciseIntroProvider>
   )
 }

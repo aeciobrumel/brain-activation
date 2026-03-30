@@ -102,6 +102,49 @@ export function scoreReactionExercise(params: ReactionScoreParams): ExerciseScor
   }
 }
 
+export interface DecisionScoreParams {
+  exerciseId: string
+  correctAnswers: number
+  mistakes: number
+  timeouts: number
+  averageDecisionMs: number
+  pauseCount: number
+  durationMs: number
+  totalDurationMs: number
+}
+
+export function scoreDecisionExercise(params: DecisionScoreParams): ExerciseScore {
+  const answeredResponses = params.correctAnswers + params.mistakes
+  const totalPrompts = answeredResponses + params.timeouts
+  const accuracy =
+    answeredResponses === 0 ? 0 : Math.min(params.correctAnswers / answeredResponses, 1)
+
+  const reactionBonus =
+    params.averageDecisionMs > 0
+      ? Math.max(0, 1 - (params.averageDecisionMs - 300) / 500)
+      : 0
+  const responseRate =
+    totalPrompts === 0 ? 0 : Math.min(answeredResponses / totalPrompts, 1)
+  const consistency = Math.max(0, reactionBonus * responseRate - params.pauseCount * 0.1)
+  const completionRate = Math.min(params.durationMs / Math.max(params.totalDurationMs, 1), 1)
+
+  return {
+    exerciseId: params.exerciseId,
+    timestamp: Date.now(),
+    neuralScore: computeNeuralScore(accuracy, consistency, completionRate),
+    accuracy,
+    consistency,
+    completionRate,
+    durationMs: params.durationMs,
+    raw: {
+      correctAnswers: params.correctAnswers,
+      mistakes: params.mistakes,
+      timeouts: params.timeouts,
+      averageDecisionMs: Math.round(params.averageDecisionMs),
+    },
+  }
+}
+
 export interface CountdownScoreParams {
   exerciseId: string
   completedSteps: number
@@ -284,6 +327,39 @@ export function scoreTrackingExercise(params: TrackingScoreParams): ExerciseScor
       targetDistance: params.targetDistance,
       greenZoneRatio: Math.round(params.greenZoneRatio * 100),
       coverageRatio: Math.round((params.coverageRatio ?? 0) * 100),
+      pauseCount: params.pauseCount ?? 0,
+      ...(params.raw ?? {}),
+    },
+  }
+}
+
+export interface RoutineScoreParams {
+  exerciseId: string
+  completedCues: number
+  expectedCues: number
+  pauseCount?: number
+  durationMs: number
+  totalDurationMs: number
+  raw?: Record<string, number>
+}
+
+export function scoreRoutineExercise(params: RoutineScoreParams): ExerciseScore {
+  const accuracy =
+    params.expectedCues <= 0 ? 0 : Math.min(params.completedCues / params.expectedCues, 1)
+  const consistency = Math.max(0, 1 - (params.pauseCount ?? 0) * 0.08)
+  const completionRate = Math.min(params.durationMs / Math.max(params.totalDurationMs, 1), 1)
+
+  return {
+    exerciseId: params.exerciseId,
+    timestamp: Date.now(),
+    neuralScore: computeNeuralScore(accuracy, consistency, completionRate),
+    accuracy,
+    consistency,
+    completionRate,
+    durationMs: params.durationMs,
+    raw: {
+      completedCues: params.completedCues,
+      expectedCues: params.expectedCues,
       pauseCount: params.pauseCount ?? 0,
       ...(params.raw ?? {}),
     },

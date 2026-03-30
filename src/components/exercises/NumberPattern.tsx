@@ -3,6 +3,7 @@ import type { ReactNode } from 'react'
 
 import { scoreGridExercise } from '../../lib/scoring'
 import { saveExerciseScore } from '../../lib/storage'
+import { generatePattern } from '../../data/numberPatterns'
 import { ExerciseChoices } from './ExerciseChoices'
 import { ExerciseFrame } from './ExerciseFrame'
 import { ExerciseViewport } from './ExerciseViewport'
@@ -22,52 +23,8 @@ interface PatternQuestion {
   rule: string
 }
 
-function uniqueOptions(answer: number, distractors: number[]) {
-  return Array.from(new Set([answer, ...distractors])).slice(0, 4).sort(() => Math.random() - 0.5)
-}
-
 function buildQuestion(tier: number): PatternQuestion {
-  switch (tier) {
-    case 0: {
-      const step = [2, 3, 5, 7][Math.floor(Math.random() * 4)] ?? 2
-      const start = [4, 6, 8, 10, 12][Math.floor(Math.random() * 5)] ?? 4
-      const sequence = Array.from({ length: 4 }, (_, index) => start + index * step)
-      const answer = start + 4 * step
-      return { sequence, answer, options: uniqueOptions(answer, [answer + 1, answer - step, answer + step]), rule: `+${step}` }
-    }
-    case 1: {
-      const ratio = [2, 3][Math.floor(Math.random() * 2)] ?? 2
-      const start = [2, 3, 4][Math.floor(Math.random() * 3)] ?? 2
-      const sequence = Array.from({ length: 4 }, (_, index) => start * ratio ** index)
-      const answer = start * ratio ** 4
-      return { sequence, answer, options: uniqueOptions(answer, [answer / ratio, answer + ratio, answer - ratio]), rule: `x${ratio}` }
-    }
-    case 2: {
-      const first = [1, 2, 3][Math.floor(Math.random() * 3)] ?? 1
-      const second = [2, 3, 5][Math.floor(Math.random() * 3)] ?? 2
-      const sequence = [first, second]
-      while (sequence.length < 4) {
-        sequence.push(sequence.at(-1)! + sequence.at(-2)!)
-      }
-      const answer = sequence.at(-1)! + sequence.at(-2)!
-      return { sequence, answer, options: uniqueOptions(answer, [answer - 1, answer + 2, sequence.at(-1)! * 2]), rule: 'fibonacci' }
-    }
-    case 3: {
-      const start = [3, 5, 7][Math.floor(Math.random() * 3)] ?? 3
-      const sequence = [start]
-      const deltas = [2, -1]
-      while (sequence.length < 4) {
-        sequence.push(sequence.at(-1)! + deltas[(sequence.length - 1) % deltas.length]!)
-      }
-      const answer = sequence.at(-1)! + deltas[(sequence.length - 1) % deltas.length]!
-      return { sequence, answer, options: uniqueOptions(answer, [answer + 1, answer - 2, answer + 3]), rule: '+2 -1' }
-    }
-    default: {
-      const sequence = [1, 4, 9, 16]
-      const answer = 25
-      return { sequence, answer, options: uniqueOptions(answer, [24, 26, 36]), rule: 'quadrado' }
-    }
-  }
+  return generatePattern(tier)
 }
 
 export function NumberPattern({ duration, onComplete, footerAction }: ExerciseModuleProps) {

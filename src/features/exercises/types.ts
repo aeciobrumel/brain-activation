@@ -6,6 +6,17 @@ export type ExerciseCategory =
   | 'speed'
   | 'creativity'
   | 'pressure'
+  | 'somatic'
+
+export interface ExerciseIntroMedia {
+  type: 'image' | 'video'
+  src?: string
+  posterSrc?: string
+  alt: string
+  title?: string
+  caption?: string
+  expectedPath?: string
+}
 
 export interface Exercise {
   id: string
@@ -15,6 +26,7 @@ export interface Exercise {
   duration: number
   description: string
   instructions: string[]
+  introMedia?: ExerciseIntroMedia
   difficulty?: 1 | 2 | 3
   benefits?: string[]
 }

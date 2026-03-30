@@ -1,4 +1,4 @@
-import { CheckCircle2, RotateCcw } from 'lucide-react'
+import { CheckCircle2, RotateCcw, SkipForward } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 import { categoryThemes } from '../../../data/exercises'
@@ -46,9 +46,59 @@ export function TrainingSession({ exercises, mode, immersive = false }: Training
   }
 
   if (isComplete || !currentExercise) {
+    if (immersive) {
+      return (
+        <div className="flex h-full min-h-0 items-center justify-center overflow-auto bg-slate-950 px-6 py-8 text-white">
+          <div className="w-full max-w-3xl space-y-6">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm">
+              <CheckCircle2 className="h-4 w-4" />
+              {mode === 'quick' ? 'Ativação concluída' : 'Sessão concluída'}
+            </div>
+            <div>
+              <h2 className="font-display text-4xl">
+                {mode === 'quick' ? 'Cérebro ativado' : 'Treino finalizado'}
+              </h2>
+              <p className="mt-3 max-w-2xl text-base leading-7 text-white/75">
+                {mode === 'quick'
+                  ? 'Você executou um circuito rápido para recuperar atenção e prontidão mental.'
+                  : 'Você concluiu a sessão completa com foco, memória, lógica, coordenação e velocidade mental.'}
+              </p>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-3">
+              <div className="rounded-3xl border border-white/10 bg-white/5 p-4">
+                <div className="text-sm text-white/55">Exercícios</div>
+                <div className="mt-2 text-2xl font-semibold">{totalExercises}</div>
+              </div>
+              <div className="rounded-3xl border border-white/10 bg-white/5 p-4">
+                <div className="text-sm text-white/55">Duração</div>
+                <div className="mt-2 text-2xl font-semibold">
+                  {formatSeconds(exercises.reduce((sum, exercise) => sum + exercise.duration, 0))}
+                </div>
+              </div>
+              <div className="rounded-3xl border border-white/10 bg-white/5 p-4">
+                <div className="text-sm text-white/55">Status</div>
+                <div className="mt-2 text-2xl font-semibold">100%</div>
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <Button variant="secondary" onClick={restart} className="w-full sm:w-auto">
+                <RotateCcw className="h-4 w-4" />
+                Repetir
+              </Button>
+              <Link to={mode === 'quick' ? '/quick-activation' : '/daily-training'}>
+                <Button variant="ghost" className="text-white hover:bg-white/10">
+                  Sair do modo imersivo
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      )
+    }
+
     return (
-      <Card className="border-0 bg-slate-950 text-white">
-        <div className="space-y-6">
+      <Card className="h-full min-h-0 overflow-auto border-0 bg-slate-950 text-white [@media(max-height:800px)]:p-4">
+        <div className="space-y-6 [@media(max-height:800px)]:space-y-4">
           <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm">
             <CheckCircle2 className="h-4 w-4" />
             {mode === 'quick' ? 'Ativação concluída' : 'Sessão concluída'}
@@ -57,7 +107,7 @@ export function TrainingSession({ exercises, mode, immersive = false }: Training
             <h2 className="font-display text-4xl">
               {mode === 'quick' ? 'Cérebro ativado' : 'Treino finalizado'}
             </h2>
-            <p className="mt-3 text-base leading-7 text-white/72">
+            <p className="mt-3 text-base leading-7 text-white/75">
               {mode === 'quick'
                 ? 'Você executou um circuito rápido para recuperar atenção e prontidão mental.'
                 : 'Você concluiu a sessão completa com foco, memória, lógica, coordenação e velocidade mental.'}
@@ -100,12 +150,22 @@ export function TrainingSession({ exercises, mode, immersive = false }: Training
     <ExerciseRenderer
       exercise={currentExercise}
       onComplete={advance}
-      footerAction={<Button onClick={advance}>Próximo</Button>}
+      footerAction={
+        <Button
+          onClick={advance}
+          size="icon"
+          title="Próximo"
+          aria-label="Próximo"
+          className="bg-white/[0.15] text-white ring-1 ring-white/20 hover:bg-white/[0.25]"
+        >
+          <SkipForward className="h-5 w-5 drop-shadow-[0_1px_2px_rgba(15,23,42,0.45)]" />
+        </Button>
+      }
     />
   )
 
   if (immersive) {
-    return interactiveModule
+    return <div className="flex h-full min-h-0 flex-col">{interactiveModule}</div>
   }
 
   return (

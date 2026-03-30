@@ -21,6 +21,10 @@ const positions = [
   { bottom: '8%', right: '12%' },
 ]
 
+function randomBetween(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min + 1)) + min
+}
+
 export function PeripheralAttention({ duration, onComplete, footerAction }: ExerciseModuleProps) {
   const timer = useTimer({ duration, onComplete })
   const [activeSymbol, setActiveSymbol] = useState<null | { symbol: string; index: number }>(null)
@@ -29,20 +33,50 @@ export function PeripheralAttention({ duration, onComplete, footerAction }: Exer
 
   useEffect(() => {
     if (!timer.isRunning) {
+      setActiveSymbol(null)
       return
     }
 
-    const spawn = window.setInterval(() => {
-      const index = Math.floor(Math.random() * positions.length)
-      const symbol = symbols[Math.floor(Math.random() * symbols.length)]
-      setActiveSymbol({ symbol, index })
+    let cancelled = false
+    let spawnTimeoutId: number | null = null
+    let hideTimeoutId: number | null = null
 
-      window.setTimeout(() => {
-        setActiveSymbol(null)
-      }, 700)
-    }, 1400)
+    const scheduleNextSpawn = () => {
+      spawnTimeoutId = window.setTimeout(() => {
+        if (cancelled) {
+          return
+        }
 
-    return () => window.clearInterval(spawn)
+        const index = Math.floor(Math.random() * positions.length)
+        const symbol = symbols[Math.floor(Math.random() * symbols.length)]
+        const visibilityDuration = randomBetween(500, 900)
+
+        setActiveSymbol({ symbol, index })
+
+        hideTimeoutId = window.setTimeout(() => {
+          if (cancelled) {
+            return
+          }
+
+          setActiveSymbol(null)
+          scheduleNextSpawn()
+        }, visibilityDuration)
+      }, randomBetween(800, 2200))
+    }
+
+    scheduleNextSpawn()
+
+    return () => {
+      cancelled = true
+
+      if (spawnTimeoutId !== null) {
+        window.clearTimeout(spawnTimeoutId)
+      }
+
+      if (hideTimeoutId !== null) {
+        window.clearTimeout(hideTimeoutId)
+      }
+    }
   }, [timer.isRunning])
 
   useEffect(() => {

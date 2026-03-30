@@ -27,7 +27,7 @@ export function AIMemoryGenerator() {
           </div>
           <div>
             <h2 className="font-display text-4xl">Transforme conceitos em imagens absurdamente memoráveis</h2>
-            <p className="mt-4 text-base leading-8 text-white/72">
+            <p className="mt-4 text-base leading-8 text-white/75">
               Digite uma palavra, sigla ou conceito. O sistema cria um prompt visual exagerado
               para facilitar associação e retenção, inspirado por técnicas de campeões de memória.
             </p>
