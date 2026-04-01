@@ -51,7 +51,14 @@ async function generateImage(prompt: string, input: string) {
     throw new Error('Resposta da API sem imageUrl.')
   }
 
-  return payload.imageUrl
+  const url = payload.imageUrl
+  const isDataImage = url.startsWith('data:image/')
+  const isHttps = (() => { try { return new URL(url).protocol === 'https:' } catch { return false } })()
+  if (!isDataImage && !isHttps) {
+    throw new Error('URL de imagem inválida retornada pela API.')
+  }
+
+  return url
 }
 
 export function useAIMemoryGenerator() {

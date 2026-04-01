@@ -149,7 +149,7 @@ export function ExerciseFrame({
                 size="icon"
                 title="Reiniciar"
                 aria-label="Reiniciar"
-                className="h-11 w-11 bg-gray-200 text-slate-950 ring-1 ring-white/20 shadow-none hover:bg-white/90 [@media(max-height:700px)]:h-9 [@media(max-height:700px)]:w-9 [@media(max-height:500px)]:h-8 [@media(max-height:500px)]:w-8"
+                className="h-11 w-11 text-slate-950 ring-1 ring-white/20 shadow-none hover:bg-white/90 [@media(max-height:700px)]:h-9 [@media(max-height:700px)]:w-9 [@media(max-height:500px)]:h-8 [@media(max-height:500px)]:w-8"
               >
                 <RotateCcw className="h-5 w-5 text-slate-950 drop-shadow-[0_1px_2px_rgba(15,23,42,0.18)]" />
               </Button>

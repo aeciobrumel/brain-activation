@@ -32,10 +32,7 @@ export function PeripheralAttention({ duration, onComplete, footerAction }: Exer
   const [falseAlarms, setFalseAlarms] = useState(0)
 
   useEffect(() => {
-    if (!timer.isRunning) {
-      setActiveSymbol(null)
-      return
-    }
+    if (!timer.isRunning) return
 
     let cancelled = false
     let spawnTimeoutId: number | null = null
@@ -68,6 +65,7 @@ export function PeripheralAttention({ duration, onComplete, footerAction }: Exer
 
     return () => {
       cancelled = true
+      setActiveSymbol(null)
 
       if (spawnTimeoutId !== null) {
         window.clearTimeout(spawnTimeoutId)
